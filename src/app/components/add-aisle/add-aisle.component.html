@@ -1,3 +1,31 @@
-<p>
-  add-aisle works!
-</p>
+
+<div class='d-flex flex-column text-white'>
+	
+	<div class='header-text p-3 mb-3'>
+		Add Aisles for the service
+	</div>
+
+	<div class='add-aisle-main p-3'>
+		
+		<form [formGroup]="aisleForm" (ngSubmit)='addAisle(aisleForm)'>
+			<div class='form-group mb-4'>
+				<input type="text" formControlName="name" class='form-control form-control-sm' placeholder="Aisle Name">
+			</div>
+			<div class='form-group mb-4'>
+				<input type="text" formControlName="coordinator" class='form-control form-control-sm' placeholder="Aisle Coordinator">
+			</div>
+			<div class='form-group mb-4'>
+				<select class='custom-select' formControlName='rows'>
+					<option value='1'>1</option>
+					<option value='2'>2</option>
+					<option value='3'>3</option>
+					<option value='4' selected>4</option>
+					<option value='5'>5</option>
+				</select>
+			</div>
+			<div class='form-group'>
+				<button type="submit" class='p-2 text-white' [disabled]='aisleForm.invalid'>Add</button>
+			</div>
+		</form>
+	</div>
+</div>

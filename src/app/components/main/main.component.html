@@ -4,13 +4,13 @@
 	<div class='row' style='height:100%'>
 		
 		<div class='col-2 p-0'>
-			<app-sidebar></app-sidebar>
+			<app-sidebar (changeTab)='changeTab($event)'></app-sidebar>
 		</div>
 
 		<div class='offset-2'></div>
-		<div class='col-7'>
-			<app-add-aisle></app-add-aisle>
-			<app-view-aisle></app-view-aisle>
+		<div class='col-5 tab-body'>
+			<app-add-aisle *ngIf="tabs.addAisles"></app-add-aisle>
+			<app-view-aisle *ngIf='tabs.viewAisles'></app-view-aisle>
 		</div>
 	</div>
 </div>

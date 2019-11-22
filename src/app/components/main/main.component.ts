@@ -12,4 +12,18 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
 
+  tabs={addAisles:true, viewAisles:false}
+
+  changeTab(tab:any) {
+
+  	let tabKeys=Object.keys(this.tabs);
+
+  	for(let i=0; i < tabKeys.length; i++) {
+
+  		this.tabs[tabKeys[i]]=false;
+  	}
+
+  	this.tabs[tab]=true;
+  }
+
 }

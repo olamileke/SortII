@@ -21,18 +21,16 @@
 li.active
 {
  	background:#ED2939;
- 	border-radius:5px;
+ 	border-radius:4px;
  	text-align:center;
-}
-
-
-.header-text
-{
-	/*font-family:'Raleway', sans-serif;*/
 }
 
 li
 {
-	transition:all 0.5s ease-in;
+	transition:all 0.3s ease-in;
+}
+
+a
+{
 	cursor:pointer;
 }

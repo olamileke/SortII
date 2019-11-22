@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  tabs={addAisles:true, viewAisles:false, addSteward:false, getCracking:false}
+  tabs={addAisles:false, viewAisles:false, addSteward:false, getCracking:false}
+
+  @Output() changeTab=new EventEmitter();
 
   constructor() { }
 
@@ -17,16 +19,31 @@ export class SidebarComponent implements OnInit {
   }
 
 
-  setActiveTab(tab:string):void{
+  setActiveTab(tab:string, emit=false):void{
 
-  	let tabKeys=Object.keys(this.tabs);
+  	if(!this.tabs[tab]) {
 
-  	for(let i=0; i < tabKeys.length; i++) {
+	  	let tabKeys=Object.keys(this.tabs);
 
-  		this.tabs[tabKeys[i]]=false;
-  	}
+	  	for(let i=0; i < tabKeys.length; i++) {
 
-  	this.tabs[tab]=true;
+	  		this.tabs[tabKeys[i]]=false;
+	  	}
+
+	  	this.tabs[tab]=true;
+
+		  	
+	  	if(emit) {
+
+	  		this.emitChangeTab(tab);
+	  	}
+	}
+  }
+
+
+  emitChangeTab(tab:string) {
+
+  	this.changeTab.emit(tab);
   }
 
 }

@@ -4,3 +4,8 @@
  	height:100vh;
  	background:url("../../../assets/Images/Home/noisy_net.png");
  }
+
+ .tab-body
+ {
+ 	padding-top:20vh;
+ }

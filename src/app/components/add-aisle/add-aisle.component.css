@@ -1,0 +1,27 @@
+
+:host
+{
+	width:100%;
+	font-family:'Quicksand', sans-serif;
+}
+
+.header-text, .add-aisle-main
+{
+	background:rgba(0,0,0,0.1);
+}
+
+form
+{
+	font-family:'Raleway', sans-serif;
+}
+
+button
+{
+	border-radius:3px;
+	outline:none;
+	border:none;
+ 	background:#ED2939;
+ 	font-size:0.9em;
+ 	cursor:pointer;
+ 	font-family:'Quicksand', sans-serif;
+}
