@@ -1,0 +1,38 @@
+
+:host
+{
+	height:100%;
+}
+
+
+.sidebar-body
+{
+	height:100%;
+	background:rgba(0,0,0,0.15);
+	font-family:'Quicksand', sans-serif;
+}
+
+.sidebar-main
+{
+	position:relative;
+	top:-7vh;
+}
+
+li.active
+{
+ 	background:#ED2939;
+ 	border-radius:5px;
+ 	text-align:center;
+}
+
+
+.header-text
+{
+	/*font-family:'Raleway', sans-serif;*/
+}
+
+li
+{
+	transition:all 0.5s ease-in;
+	cursor:pointer;
+}
