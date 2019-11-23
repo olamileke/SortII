@@ -1,0 +1,41 @@
+
+<div class='d-flex flex-column text-white'>
+	
+	<div class='header-text p-3 mb-3'>
+		Stewards incoming!
+	</div>
+
+	<div class='add-steward-main p-3'>
+		
+		<form [formGroup]='stewardForm' (ngSubmit)='addSteward(stewardForm)'>
+			
+			<div class='form-group mb-4'>			
+				<input type="text" formControlName="name" class='form-control' placeholder="Name">
+			</div>
+			<div class='form-group mb-4'>
+				<select class='custom-select form-control-sm' formControlName='gender'>
+					<option value="Male" selected>Male</option>
+					<option value="Female">Female</option>
+				</select>
+			</div>
+			<div class='form-group mb-4'>
+				<select class='custom-select form-control-sm' formControlName='level'>
+					<option value="100" selected>100</option>
+					<option value="200">200</option>
+					<option value="300">300</option>
+					<option value="400">400</option>
+					<option value="500">500</option>
+				</select>
+			</div>
+			<div class='form-group'>
+				<select class='custom-select form-control-sm' formControlName='status'>
+					<option value='Old' selected>Old</option>
+					<option value='New' selected>New</option>
+				</select>
+			</div>
+			<div class='form-group'>
+				<button type="submit" class='p-2 text-white' [disabled]='stewardForm.invalid'>Add</button>
+			</div>
+		</form>		
+	</div>
+</div>

@@ -1,16 +1,21 @@
 
 <div class='container-fluid'>
 	
-	<div class='row' style='height:100%'>
+	<div class='navtoggle d-lg-none'>
+		<span></span>
+	</div>
+
+	<div class='row d-flex justify-content-center justify-content-lg-start' style='height:100%'>
 		
-		<div class='col-2 p-0'>
+		<div class='col-lg-2 d-none d-lg-block p-0 sidebar-container'>
 			<app-sidebar (changeTab)='changeTab($event)'></app-sidebar>
 		</div>
 
-		<div class='offset-2'></div>
-		<div class='col-5 tab-body'>
+		<div class='offset-lg-4'></div>
+		<div class='col-11 col-md-8 col-lg-5 tab-body'>
 			<app-add-aisle *ngIf="tabs.addAisles"></app-add-aisle>
 			<app-view-aisle *ngIf='tabs.viewAisles'></app-view-aisle>
+			<app-add-steward *ngIf='tabs.addSteward'></app-add-steward>
 		</div>
 	</div>
 </div>

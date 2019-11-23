@@ -29,8 +29,39 @@
 
  a
  {
+ 	position:relative;
  	background:#ED2939;
  	border-radius:3px;
  	color:#fff;
  	text-decoration: none;
+ }
+
+ .content-parent
+ {
+ 	width:100%;
+ }
+
+
+ @media(max-width:767px)
+ {
+ 	.content-box
+ 	{
+ 		text-align:right;
+ 	}
+ }
+
+
+ @media(max-width:567px)
+ {
+
+ 	.content-parent
+ 	{
+ 		width:unset;
+ 	}
+
+ 	.content-box
+ 	{
+ 		height:unset;
+ 		text-align:left;
+ 	}
  }

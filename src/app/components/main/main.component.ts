@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
 
-  tabs={addAisles:true, viewAisles:false}
+  tabs={addAisles:true, viewAisles:false, addSteward:false}
 
   changeTab(tab:any) {
 

@@ -12,6 +12,7 @@ import { MainComponent } from './components/main/main.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AddAisleComponent } from './components/add-aisle/add-aisle.component';
 import { ViewAisleComponent } from './components/view-aisle/view-aisle.component';
+import { AddStewardComponent } from './components/add-steward/add-steward.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ViewAisleComponent } from './components/view-aisle/view-aisle.component
     MainComponent,
     SidebarComponent,
     AddAisleComponent,
-    ViewAisleComponent
+    ViewAisleComponent,
+    AddStewardComponent
   ],
   imports: [
     BrowserModule,

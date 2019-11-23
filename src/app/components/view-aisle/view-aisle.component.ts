@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DetailService } from '../../services/detail.service'; 
+import { NotificationService } from '../../services/notification.service';
+
 @Component({
   selector: 'app-view-aisle',
   templateUrl: './view-aisle.component.html',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAisleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private detail:DetailService, private notification:NotificationService) { }
+
+  aisles=this.detail.aisles;
 
   ngOnInit() {
+  }
+
+
+  deleteAisle(index:number) {
+
+  	this.detail.aisles.splice(index,1);
+  	this.notification.showSuccessMessage('Aisle deleted Successfully');
   }
 
 }
