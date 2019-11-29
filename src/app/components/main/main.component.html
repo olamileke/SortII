@@ -1,13 +1,13 @@
 
 <div class='container-fluid'>
 	
-	<div class='navtoggle d-lg-none'>
+	<div class='navtoggle d-lg-none' (click)='toggleNav()'>
 		<span></span>
 	</div>
 
 	<div class='row d-flex justify-content-center justify-content-lg-start' style='height:100%'>
 		
-		<div class='col-lg-2 d-none d-lg-block p-0 sidebar-container'>
+		<div class='col-lg-2 p-0 sidebar-container' [class.active]='showNav'>
 			<app-sidebar (changeTab)='changeTab($event)'></app-sidebar>
 		</div>
 
@@ -16,6 +16,7 @@
 			<app-add-aisle *ngIf="tabs.addAisles"></app-add-aisle>
 			<app-view-aisle *ngIf='tabs.viewAisles'></app-view-aisle>
 			<app-add-steward *ngIf='tabs.addSteward'></app-add-steward>
+			<app-view-stewards *ngIf='tabs.viewStewards'></app-view-stewards>
 		</div>
 	</div>
 </div>

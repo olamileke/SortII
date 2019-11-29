@@ -1,20 +1,28 @@
 
-<div class='aisles-body p-4 text-white'>
+<div class='text-white aisles-body-container d-flex flex-column' [class.justify-content-center]='aisles.length == 0'>
 	
-	<ul class='list-unstyled' *ngIf='aisles.length > 0'>
-		<li *ngFor="let aisle of aisles" class='d-flex justify-content-between aisle align-items-center my-3'>
+	<div class='header-text p-3 mb-2' *ngIf='aisles.length > 0'>
+		{{ aisles.length }} Aisle(s)
+	</div>
+
+	<ul class='list-unstyled aisles-body px-4 py-3 ' *ngIf='aisles.length > 0'>
+		<li *ngFor="let aisle of aisles; index as i" class='d-flex justify-content-between aisle align-items-center my-3'>
 			<div>
 				<p class='m-0 mb-2 aisle-name'>{{ aisle.name }}</p>
 				<p class='m-0 mb-2'>{{ aisle.coordinator }}</p>
 				<p class='m-0'>{{ aisle.rows }} rows</p>	
 			</div>
 			<div>
-				<div class='circle d-flex justify-content-center align-items-center' (click)='deleteAisle(aisle.index)' style='cursor:pointer'>
+				<div class='circle d-flex justify-content-center align-items-center' (click)='deleteAisle(i)' style='cursor:pointer'>
 					<i class='fa fa-times'></i>
 				</div>
 			</div>
 		</li>
 	</ul>
 
-	<p class='m-0 text-center' *ngIf='aisles.length == 0'>You do not have any aisles yet</p>
+
+	<div class='d-flex flex-column align-items-center align-self-center empty-msg-container' *ngIf='aisles.length == 0'>
+		<i class='em em-slightly_frowning_face mb-3'></i>
+		<p class='m-0 text-center'>no aisles for the service</p>
+	</div>
 </div>

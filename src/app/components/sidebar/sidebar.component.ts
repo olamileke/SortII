@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  tabs={addAisles:false, viewAisles:false, addSteward:false, getCracking:false}
+  tabs={addAisles:false, viewAisles:false, addSteward:false, viewStewards:false, getCracking:false}
 
   @Output() changeTab=new EventEmitter();
 

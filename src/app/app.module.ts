@@ -13,6 +13,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AddAisleComponent } from './components/add-aisle/add-aisle.component';
 import { ViewAisleComponent } from './components/view-aisle/view-aisle.component';
 import { AddStewardComponent } from './components/add-steward/add-steward.component';
+import { ViewStewardsComponent } from './components/view-stewards/view-stewards.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddStewardComponent } from './components/add-steward/add-steward.compon
     SidebarComponent,
     AddAisleComponent,
     ViewAisleComponent,
-    AddStewardComponent
+    AddStewardComponent,
+    ViewStewardsComponent
   ],
   imports: [
     BrowserModule,

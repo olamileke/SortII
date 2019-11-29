@@ -12,7 +12,6 @@ import { NotificationService } from '../../services/notification.service';
 export class AddAisleComponent implements OnInit {
 
   aisleForm:FormGroup;
-  index=this.details.aisles.length;
 
   constructor(private fb:FormBuilder, private details:DetailService, private notification:NotificationService) { }
 
@@ -30,16 +29,14 @@ export class AddAisleComponent implements OnInit {
 
   	let aisle={name:'', coordinator:'', rows:4, index:5};
 
-  	aisle['name']=form.get('name').value;
+  	aisle['name']=form.get('name').value.charAt(0).toUpperCase() + form.get('name').value.slice(1,).toLowerCase();
   	aisle['coordinator']=form.get('coordinator').value;
   	aisle['rows']=form.get('rows').value;
-    aisle['index']=this.index;
 
   	this.details.aisles.push(aisle);
   	this.notification.showSuccessMessage('Aisle added successfully');
   	form.get('name').reset();
   	form.get('coordinator').reset();
-    this.index++;
   }
 
 }

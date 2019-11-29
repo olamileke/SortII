@@ -2,7 +2,7 @@
 <div class='w-100 text-white sidebar-body d-flex flex-column justify-content-center p-4'>
 	
 	<div class='sidebar-main'>
-		<p class='p-0 mb-4 header-text'>The Place of His Love</p>
+		<p class='p-0 mb-4 header-text'><a routerLink=''>The Place of His Love</a></p>
 
 		<ul class='list-unstyled'>
 			<li class='mb-3 p-2' (click)='setActiveTab("addAisles", true)' [class.active]='tabs.addAisles'>
@@ -13,6 +13,9 @@
 			</li>
 			<li class='mb-3 p-2' (click)='setActiveTab("addSteward", true)' [class.active]='tabs.addSteward'>
 				<a class='text-white'>Add Steward</a>
+			</li>
+			<li class='mb-3 p-2' (click)='setActiveTab("viewStewards", true)' [class.active]='tabs.viewStewards'>
+				<a class='text-white'>View Stewards</a>
 			</li>
 			<li class='mb-3 p-2' (click)='setActiveTab("getCracking", true)' [class.active]='tabs.getCracking'>
 				<a class='text-white'>Get Cracking</a>

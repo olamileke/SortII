@@ -9,10 +9,12 @@ export class MainComponent implements OnInit {
 
   constructor() { }
 
+  showNav=false;
+
   ngOnInit() {
   }
 
-  tabs={addAisles:true, viewAisles:false, addSteward:false}
+  tabs={addAisles:true, viewAisles:false, addSteward:false, viewStewards:false}
 
   changeTab(tab:any) {
 
@@ -24,6 +26,13 @@ export class MainComponent implements OnInit {
   	}
 
   	this.tabs[tab]=true;
+  }
+
+
+
+  toggleNav() {
+
+     this.showNav=!this.showNav;
   }
 
 }

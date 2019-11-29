@@ -6,26 +6,14 @@
 	font-family:'Quicksand', sans-serif;
 }
 
-
-.aisles-body-container
+.stewards-body-container
 {
 	min-height:80vh;
 }
 
-.header-text, .aisles-body
+.header-text, .stewards-body
 {
 	background:rgba(0,0,0,0.1);
-}
-
-.aisles-body
-{
-	max-height:60vh;
-	overflow-y:auto;
-}
-
-.aisle-name
-{
-	font-size:1.25em;
 }
 
 .circle
@@ -42,17 +30,18 @@
 }
 
 
-.em
-{
-	font-size:3.15em;
-}
-
-
 .empty-msg-container
 {
 	position: relative;
 	top:-12vh;
 }
+
+
+.em
+{
+	font-size:3.15em;
+}
+
 
 
 @media(max-width:567px)
