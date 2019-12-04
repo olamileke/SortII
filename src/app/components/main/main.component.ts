@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-main',
@@ -9,12 +11,14 @@ export class MainComponent implements OnInit {
 
   constructor() { }
 
+  @ViewChild(SidebarComponent) sidebar;
+
   showNav=false;
 
   ngOnInit() {
   }
 
-  tabs={addAisles:true, viewAisles:false, addSteward:false, viewStewards:false}
+  tabs={addAisles:true, viewAisles:false, addSteward:false, viewStewards:false, getCracking:false, postings:false}
 
   changeTab(tab:any) {
 
@@ -33,6 +37,14 @@ export class MainComponent implements OnInit {
   toggleNav() {
 
      this.showNav=!this.showNav;
+  }
+
+
+  togglePostings() {
+
+    this.changeTab('postings');
+    this.sidebar.setActiveTab('postings');
+    this.sidebar.showPostings=true;
   }
 
 }

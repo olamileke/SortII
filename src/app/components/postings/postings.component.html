@@ -1,0 +1,26 @@
+
+<div class='text-white'>
+	
+	<div class='mb-4 px-1'>
+		<select class='form-control' (change)='changeSelectedAisle($event)'>
+			<option *ngFor='let aisle of aisles' value="{{ aisle.name }}">{{ aisle.name }}</option>
+		</select>
+	</div>
+
+	<div class='aisle-text p-3 mb-3'>
+		<p class='m-0 mb-2 coordinator'>Coordinator</p>
+		<p class='m-0'>{{ selectedAisle.coordinator }}</p>
+	</div>
+
+	<ul class='list-unstyled rows p-4'>
+		<li *ngFor='let post of selectedAisle.postings; index as i' class='d-flex justify-content-between align-items-center mb-3'>
+			<div class='d-flex flex-column'>
+				<app-steward *ngFor='let steward of post' [name]=steward class='my-1'></app-steward>
+			</div>
+			<div class='d-flex justify-content-center align-items-center p-2 elevation my-1'>
+				<p class='m-0'>{{ getRow(i) }}</p>
+			</div>
+		</li>
+	</ul>
+
+</div>

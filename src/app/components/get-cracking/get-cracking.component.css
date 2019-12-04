@@ -1,0 +1,22 @@
+
+:host
+{
+	width:100%;
+	font-family:'Quicksand', sans-serif;
+}
+
+.header-text, .get-cracking-main, .details
+{
+	background:rgba(0,0,0,0.1);
+}
+
+
+button
+{
+	border-radius:3px;
+	outline:none;
+	border:none;
+ 	background:#ED2939;
+ 	font-size:0.9em;
+ 	cursor:pointer;
+}

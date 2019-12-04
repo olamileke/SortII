@@ -27,7 +27,7 @@ export class AddStewardComponent implements OnInit {
 
   addSteward(form:FormGroup):void {
 
-      let steward={};
+      let steward={name:'', level:100, status:''};
 
       steward['name']=form.get('name').value;
       steward['level']=form.get('level').value;

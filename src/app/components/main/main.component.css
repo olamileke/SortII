@@ -54,10 +54,16 @@ div.navtoggle span:before
 	width:75%;
 }
 
- .tab-body
- {
- 	padding-top:20vh;
- }
+
+.tab-body
+{
+	padding-top:20vh;
+}
+
+.alt-padding
+{
+	padding-top:14vh !important;
+}
 
 
 @media(max-width:991px)

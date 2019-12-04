@@ -1,0 +1,31 @@
+
+<div class='text-white'>
+	
+	<div class='header-text d-flex justify-content-between p-3 mb-3'>
+		<p class='m-0'>{{ selectedService }}</p>
+		<p class='m-0'>{{ currentDate }}</p>
+	</div>
+
+	<div class='get-cracking-main p-3'>
+		
+		<form [formGroup]='setupForm' (ngSubmit)='postStewards(setupForm)'>
+			<div class='form-group mb-4'>
+				<select class='form-control service-type custom-select' formControlName='serviceType' (change)='changeServiceType($event)'>
+					<option value='Communion Service' selected>Communion Service</option>
+					<option value='Anointing Service'>Anointing Service</option>
+					<option value='Midweek Service'>Midweek Service</option>
+					<option value='Prayer/Fasting '>Prayer/Fasting</option>
+				</select>
+			</div>
+			<div class='form-group mb-4'>
+				<select class='form-control' formControlName='numPostings' (change)='changeNumPostings($event)'>
+					<option value='1'>1</option>
+					<option value='2' selected>2</option>
+				</select>
+			</div>
+			<div class='form-group'>
+				<button type="submit" class='p-2 text-white' [disabled]='setupForm.invalid'>Post</button>
+			</div>
+		</form>
+	</div>
+</div>

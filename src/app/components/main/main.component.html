@@ -12,11 +12,13 @@
 		</div>
 
 		<div class='offset-lg-4'></div>
-		<div class='col-11 col-md-8 col-lg-5 tab-body'>
+		<div class='col-11 col-md-8 col-lg-5 tab-body' [class.alt-padding]='tabs.postings'>
 			<app-add-aisle *ngIf="tabs.addAisles"></app-add-aisle>
 			<app-view-aisle *ngIf='tabs.viewAisles'></app-view-aisle>
 			<app-add-steward *ngIf='tabs.addSteward'></app-add-steward>
 			<app-view-stewards *ngIf='tabs.viewStewards'></app-view-stewards>
+			<app-get-cracking *ngIf='tabs.getCracking' (postings)='togglePostings()'></app-get-cracking>
+			<app-postings *ngIf='tabs.postings'></app-postings>
 		</div>
 	</div>
 </div>

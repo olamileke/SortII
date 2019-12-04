@@ -27,7 +27,7 @@ export class AddAisleComponent implements OnInit {
 
   addAisle(form:FormGroup) {
 
-  	let aisle={name:'', coordinator:'', rows:4, index:5};
+  	let aisle={name:'', coordinator:'', rows:4, postings:[]};
 
   	aisle['name']=form.get('name').value.charAt(0).toUpperCase() + form.get('name').value.slice(1,).toLowerCase();
   	aisle['coordinator']=form.get('coordinator').value;

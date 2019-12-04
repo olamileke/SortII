@@ -14,6 +14,9 @@ import { AddAisleComponent } from './components/add-aisle/add-aisle.component';
 import { ViewAisleComponent } from './components/view-aisle/view-aisle.component';
 import { AddStewardComponent } from './components/add-steward/add-steward.component';
 import { ViewStewardsComponent } from './components/view-stewards/view-stewards.component';
+import { GetCrackingComponent } from './components/get-cracking/get-cracking.component';
+import { PostingsComponent } from './components/postings/postings.component';
+import { StewardComponent } from './components/steward/steward.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ViewStewardsComponent } from './components/view-stewards/view-stewards.
     AddAisleComponent,
     ViewAisleComponent,
     AddStewardComponent,
-    ViewStewardsComponent
+    ViewStewardsComponent,
+    GetCrackingComponent,
+    PostingsComponent,
+    StewardComponent
   ],
   imports: [
     BrowserModule,
