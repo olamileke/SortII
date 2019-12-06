@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+import { NotificationService } from '../../services/notification.service';
+
 @Component({
   selector: 'app-steward',
   templateUrl: './steward.component.html',
@@ -18,7 +20,7 @@ export class StewardComponent implements OnInit {
   alt_name:string;
   new_name:string;
 
-  constructor() { }
+  constructor(private notification:NotificationService) { }
 
   ngOnInit() {
 
@@ -44,9 +46,16 @@ export class StewardComponent implements OnInit {
 
   emitChange() {
 
-    let details={aisle:this.aisle, elevation:this.elevation, position:this.position, name:this.new_name};
+    if(this.new_name.length > 5) {
 
-  	this.changeName.emit(details);
+        let details={aisle:this.aisle, elevation:this.elevation, position:this.position, name:this.new_name};
+
+      	this.changeName.emit(details);
+    }
+    else {
+
+        this.notification.showErrorMessage('Name must be at least 5 characters');
+    }
   }
 
 }

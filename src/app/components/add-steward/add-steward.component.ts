@@ -18,14 +18,20 @@ export class AddStewardComponent implements OnInit {
   ngOnInit() {
 
   	this.stewardForm=this.fb.group({
-  		name:['', [Validators.required]],
+  		name:['', [Validators.required, Validators.minLength(5)]],
   		level:['100', [Validators.required]],
   		status:['Old', [Validators.required]]
   	});
   }
 
 
-  addSteward(form:FormGroup):void {
+  addSteward(form:FormGroup):boolean {
+
+     if(this.detail.posted) {
+
+        this.notification.showErrorMessage('Posting completed!');
+        return false;
+      }
 
       let steward={name:'', level:100, status:''};
 
@@ -34,6 +40,16 @@ export class AddStewardComponent implements OnInit {
       steward['status']=form.get('status').value;
 
       this.detail.stewards.push(steward);
+
+      if(steward['status'] == 'Old') {
+
+          this.detail.oldStewards.push(steward);
+      }
+      else {
+
+          this.detail.newStewards.push(steward);
+      }
+
       this.notification.showSuccessMessage('Steward Added Successfully');
       form.get('name').reset();
   }  

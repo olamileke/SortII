@@ -10,7 +10,7 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class ViewStewardsComponent implements OnInit {
 
-  stewards=this.detail.stewards;
+  stewards=this.detail.newStewards;
 
   constructor(private detail:DetailService, private notification:NotificationService) { }
 

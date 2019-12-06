@@ -20,7 +20,7 @@
 			<li class='mb-3 p-2' (click)='setActiveTab("getCracking", true)' [class.active]='tabs.getCracking'>
 				<a class='text-white'>Get Cracking</a>
 			</li>
-			<li class='mb-3 p-2' (click)='setActiveTab("postings", true)' [class.active]='tabs.postings' *ngIf='showPostings'>
+			<li class='mb-3 p-2' (click)='setActiveTab("postings", true)' [class.active]='tabs.postings' *ngIf='posted'>
 				<a class='text-white'>Postings</a>
 			</li>
 			

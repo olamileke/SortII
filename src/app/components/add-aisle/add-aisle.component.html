@@ -9,19 +9,13 @@
 		
 		<form [formGroup]="aisleForm" (ngSubmit)='addAisle(aisleForm)'>
 			<div class='form-group mb-4'>
-				<input type="text" formControlName="name" class='form-control' placeholder="Aisle Name">
+				<input type="text" formControlName="name" class='form-control' placeholder="Aisle Name" readonly>
+			</div>
+			<div class='form-group mb-4'>
+				<input type="text" name="rows" formControlName='rows' class='form-control' placeholder="Number of rows" readonly>
 			</div>
 			<div class='form-group mb-4'>
 				<input type="text" formControlName="coordinator" class='form-control' placeholder="Aisle Coordinator">
-			</div>
-			<div class='form-group mb-4'>
-				<select class='custom-select form-control-sm' formControlName='rows'>
-					<option value='1'>1</option>
-					<option value='2'>2</option>
-					<option value='3'>3</option>
-					<option value='4' selected>4</option>
-					<option value='5'>5</option>
-				</select>
 			</div>
 			<div class='form-group'>
 				<button type="submit" class='p-2 text-white' [disabled]='aisleForm.invalid'>Add</button>

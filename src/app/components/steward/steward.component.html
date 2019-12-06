@@ -1,6 +1,6 @@
 
 
 <div class='d-flex align-items-center justify-content-between'>
-	<input type="text" name="name" value="{{ name }}" class='px-1 mr-2' (input)='verifyName($event)'>
+	<input type="text" name="name" value="{{ name }}" class='mr-2' (input)='verifyName($event)'>
 	<i class='fa fa-check d-none' [class.d-inline]='showCheck' (click)='emitChange()'></i>
 </div>

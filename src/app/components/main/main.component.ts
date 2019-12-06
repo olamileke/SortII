@@ -44,7 +44,7 @@ export class MainComponent implements OnInit {
 
     this.changeTab('postings');
     this.sidebar.setActiveTab('postings');
-    this.sidebar.showPostings=true;
+    this.sidebar.posted=true;
   }
 
 }
