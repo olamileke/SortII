@@ -1,3 +1,9 @@
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+:host
+{
+	width:100%;
+}
 
 input
 {
@@ -5,4 +11,11 @@ input
 	outline:none;
 	border-color:transparent;
 	color:#fff;
+}
+
+.fa-check
+{
+	color:#0B6623;
+	cursor:pointer;
+	z-index:9999;
 }

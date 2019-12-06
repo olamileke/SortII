@@ -15,7 +15,7 @@
 	<ul class='list-unstyled rows p-4'>
 		<li *ngFor='let post of selectedAisle.postings; index as i' class='d-flex justify-content-between align-items-center mb-3'>
 			<div class='d-flex flex-column'>
-				<app-steward *ngFor='let steward of post' [name]=steward class='my-1'></app-steward>
+				<app-steward *ngFor='let steward of post; index as j' [name]=steward [aisle]=selectedAisle.name [elevation]=i [position]=j class='my-1' (changeName)='changeName($event)'></app-steward>
 			</div>
 			<div class='d-flex justify-content-center align-items-center p-2 elevation my-1'>
 				<p class='m-0'>{{ getRow(i) }}</p>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DetailService } from '../../services/detail.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-postings',
@@ -14,9 +15,9 @@ export class PostingsComponent implements OnInit {
   service=this.detail.service;
   aisles=this.detail.aisles;
   selectedAisle=this.aisles[0];
-  rows=['A', 'B', 'C', 'D', 'E']
+  rows=['A', 'B', 'C', 'D', 'E'];
 
-  constructor(private detail:DetailService) { }
+  constructor(private detail:DetailService, private notification:NotificationService) { }
 
   ngOnInit() {
 
@@ -44,20 +45,30 @@ export class PostingsComponent implements OnInit {
 
   getAisle(name:string): any {
 
-      for(let i=0; i < this.aisles.length; i++) {
+      let aisles=this.aisles.filter(function(aisle) {
 
-          if(this.aisles[i].name == name) {
+          return aisle.name == name
+      });
 
-              return this.aisles[i];
-              break;
-          }
-      }
+      return aisles[0];
   }
 
 
   getRow(i:number): string {
 
       return this.rows[i];
+  }
+
+
+  changeName(details:any) {
+
+      let aisles=this.aisles.filter(function(aisle) {
+
+          return aisle.name == details.aisle;
+      });
+
+      aisles[0].postings[details.elevation][details.position]=details.name;
+      this.notification.showSuccessMessage('Name changed successfully!');
   }
 
 }
