@@ -19,7 +19,6 @@ export class AddStewardComponent implements OnInit {
 
   	this.stewardForm=this.fb.group({
   		name:['', [Validators.required, Validators.minLength(5)]],
-  		level:['100', [Validators.required]],
   		status:['Old', [Validators.required]]
   	});
   }
@@ -36,7 +35,6 @@ export class AddStewardComponent implements OnInit {
       let steward={name:'', level:100, status:''};
 
       steward['name']=form.get('name').value;
-      steward['level']=form.get('level').value;
       steward['status']=form.get('status').value;
 
       this.detail.stewards.push(steward);

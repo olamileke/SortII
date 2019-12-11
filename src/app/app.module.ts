@@ -17,6 +17,7 @@ import { ViewStewardsComponent } from './components/view-stewards/view-stewards.
 import { GetCrackingComponent } from './components/get-cracking/get-cracking.component';
 import { PostingsComponent } from './components/postings/postings.component';
 import { StewardComponent } from './components/steward/steward.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { StewardComponent } from './components/steward/steward.component';
     ViewStewardsComponent,
     GetCrackingComponent,
     PostingsComponent,
-    StewardComponent
+    StewardComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
