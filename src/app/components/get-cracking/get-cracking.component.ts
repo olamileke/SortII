@@ -13,7 +13,6 @@ export class GetCrackingComponent implements OnInit {
 
   selectedService='Communion Service';
   currentDate:string;
-  months=['Jan', 'Feb', 'March', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   aisles=this.detail.aisles;
   @Output() postings=new EventEmitter();
 
@@ -23,25 +22,11 @@ export class GetCrackingComponent implements OnInit {
 
   ngOnInit() {
 
-  	this.currentDate=this.getCurrentDate();
-
   	this.setupForm=this.fb.group({
 
   		serviceType:['Communion Service', [Validators.required]],
   		numPostings:['2', [Validators.required]]
   	});
-  }
-
-
-  getCurrentDate():string {
-
-  	let date=new Date();
-  	
-  	let currentDate=date.getDate();
-  	let currentMonth=this.months[date.getMonth()];
-  	let currentYear=date.getFullYear();
-
-  	return `${currentMonth} ${currentDate} ${currentYear}`;
   }
 
 
@@ -164,36 +149,14 @@ export class GetCrackingComponent implements OnInit {
 
            for(let j=0; j < count; j++) { 
 
-               let val=0;
+               if(this.detail.assignedOldStewards.length < this.detail.oldStewards.length) {
 
-               while(val < 1) { 
+                   this.detail.aisles[i].postings[j]=[this.getSteward(this.detail.oldStewards, this.detail.assignedOldStewards)];
+               }
+               else {
 
-                   if(this.detail.assignedOldStewards.length < this.detail.oldStewards.length) {
-
-                       let index=Math.round(Math.random() * this.detail.oldStewards.length) - 1;
-                       index == -1 ? index = 0 : index=index;
-
-                       if(!this.detail.assignedStewards.includes(this.detail.oldStewards[index].name)) {
-
-                           this.detail.assignedStewards.push(this.detail.oldStewards[index].name);
-                           this.detail.assignedOldStewards.push(this.detail.oldStewards[index].name);
-                           this.detail.aisles[i].postings[j]=[this.detail.oldStewards[index].name];
-                           val++;
-                       }
-                   }
-                   else {
-
-                       let index=Math.round(Math.random() * this.detail.newStewards.length) - 1;
-                       index == -1 ? index = 0 : index=index;
-
-                       if(!this.detail.assignedStewards.includes(this.detail.newStewards[index].name)) {
-
-                           this.detail.assignedStewards.push(this.detail.newStewards[index].name);
-                           this.detail.aisles[i].postings[j]=[this.detail.newStewards[index].name];
-                           val++;
-                       }
-                   }
-                }
+                   this.detail.aisles[i].postings[j]=[this.getSteward(this.detail.newStewards)];
+               }
             }
        }
 
@@ -221,20 +184,7 @@ export class GetCrackingComponent implements OnInit {
                break;
            }
 
-            let val=0;
-
-            while(val < 1) {
-
-               let index=Math.round(Math.random() * totalStewards.length) - 1;
-               index == -1 ? index=0 : index=index;
-
-               if(!this.detail.assignedStewards.includes(totalStewards[index].name)) {
-
-                   this.detail.aisles[i].postings[position]=[totalStewards[index].name];
-                   this.detail.assignedStewards.push(totalStewards[index].name);
-                   val++;
-               }
-           }
+           this.detail.aisles[i].postings[position]=[this.getSteward(totalStewards)];
        }
    }
 
@@ -287,91 +237,56 @@ export class GetCrackingComponent implements OnInit {
 
    assignSteward(status):string {
 
+        if(!status && this.detail.assignedNewStewards.length < this.detail.newStewards.length) {
+
+          return this.getSteward(this.detail.newStewards, this.detail.assignedNewStewards)
+       }
+       else {
+
+          return this.getSteward(this.detail.oldStewards);
+       }
+   }
+
+
+   getSteward(arrayToCheck:any, arrayToAdd=null) {
+
        let i=0;
 
        while(i < 1) {
 
-           if(!status && this.detail.assignedNewStewards.length < this.detail.newStewards.length) {
+            let index=Math.round(Math.random() * arrayToCheck.length) - 1;
+            index == -1 ? index=0 : index=index;
 
-               let index=Math.round(Math.random() * this.detail.newStewards.length) - 1;
-               index == -1 ? index=0 : index=index;
+            if(!this.detail.assignedStewards.includes(arrayToCheck[index]['name'])) {
 
-               if(!this.detail.assignedStewards.includes(this.detail.newStewards[index].name)) {
+                 this.detail.assignedStewards.push(arrayToCheck[index]['name']);
 
-                     this.detail.assignedStewards.push(this.detail.newStewards[index].name);
-                     this.detail.assignedNewStewards.push(this.detail.newStewards[index].name);
-                     i++;
-                     return this.detail.newStewards[index].name;
-               }
-           }
-           else {
+                 if(arrayToAdd != null) {
+                    
+                    arrayToAdd.push(arrayToCheck[index]['name']);
+                 }
 
-               let index=Math.round(Math.random() * this.detail.oldStewards.length) - 1;
-               index == -1 ? index=0 : index=index;
-               if(!this.detail.assignedStewards.includes(this.detail.oldStewards[index].name)) {
-
-                   this.detail.assignedStewards.push(this.detail.oldStewards[index].name);
-                   i++;
-                   return this.detail.oldStewards[index].name;
-               }
-           }
-       }
+                 i++;
+                 return arrayToCheck[index]['name'];
+            } 
+        }
    }
 
 
    assignElevations():any {
 
        let posting=[];
-       let i=0;
+       posting.push(this.getSteward(this.detail.oldStewards));
 
-       while(i < 1) {
+       if(this.detail.assignedNewStewards.length == this.detail.newStewards.length) {
 
-           let index=Math.round(Math.random() * this.detail.oldStewards.length) - 1;
-           index == -1 ? index=0 : index=index;
-
-           if(!this.detail.assignedStewards.includes(this.detail.oldStewards[index].name)) {
-
-               posting.push(this.detail.oldStewards[index].name);
-               this.detail.assignedStewards.push(this.detail.oldStewards[index].name);
-               i++;
-           }
+           posting.push(this.getSteward(this.detail.oldStewards));        
        }
+       else {
 
-
-       let j=0;
-
-       while(j < 1) {
-
-           if(this.detail.assignedNewStewards.length == this.detail.newStewards.length) {
-
-               let index=Math.round(Math.random() * this.detail.oldStewards.length) - 1;
-               index == -1 ? index=0 : index=index;
-
-               if(!this.detail.assignedStewards.includes(this.detail.oldStewards[index].name)) {
-
-                     posting.push(this.detail.oldStewards[index].name);
-                     this.detail.assignedStewards.push(this.detail.oldStewards[index].name);
-                     j++;
-               }
-
-           }
-           else {
-
-               let index=Math.round(Math.random() * this.detail.newStewards.length) - 1;
-               index == -1 ? index=0 : index=index;
-
-
-               if(!this.detail.assignedStewards.includes(this.detail.newStewards[index].name)) {
-
-                     posting.push(this.detail.newStewards[index].name);
-                     this.detail.assignedStewards.push(this.detail.newStewards[index].name);
-                     this.detail.assignedNewStewards.push(this.detail.newStewards[index].name);
-                     j++;
-               }
-
-           }
+           posting.push(this.getSteward(this.detail.newStewards, this.detail.assignedNewStewards));        
        }
-
+   
        return posting;
    }
 
