@@ -49,16 +49,43 @@ export class GetCrackingComponent implements OnInit {
 
   	this.selectedService=event.target.value;
     this.detail.service=event.target.value;
+
+    if(event.target.value == 'Anointing Service') {
+
+        this.setupForm.get('numPostings').setValue('1');
+    }
+    else {
+
+        this.setupForm.get('numPostings').setValue('2');
+    }
   }
 
-
-  changeNumPostings(event:any):void {
-
-      this.detail.numPostings=event.target.value;
-  }
 
 
   postStewards():boolean {
+
+    if(!this.validation()) {
+
+        return false;
+    }
+
+    this.postings.emit();
+    this.generateAisleRows();
+
+    if(this.detail.service != 'Anointing Service') {
+
+        this.assignCommunionStewards();
+    }
+    else {
+
+        this.assignAnointingStewards();
+    }
+
+    this.detail.posted=true;
+  }
+
+
+  validation():boolean {
 
     if(this.detail.posted) {
 
@@ -66,11 +93,27 @@ export class GetCrackingComponent implements OnInit {
       return false;
     }
 
-    this.postings.emit();
-    this.generateAisleRows();
-    this.assignCommunionStewards();
+    let totalStewards=this.detail.oldStewards.concat(this.detail.newStewards);
 
-    this.detail.posted=true;
+    if(this.detail.service == 'Anointing Service') {
+
+        if(totalStewards.length < 15) {
+
+            this.notification.showErrorMessage("Ateast 15 stewards needed initially");
+            return false;
+        }
+    }
+    else {
+
+        if(totalStewards.length < 40) {
+
+            this.notification.showErrorMessage("Ateast 40 stewards needed initially");
+            return false;
+        }
+    }
+
+    return true;
+
   }
 
 
@@ -80,7 +123,15 @@ export class GetCrackingComponent implements OnInit {
 
         for(let j=0; j < this.detail.aisles[i].rows; j++) {
 
-            this.detail.aisles[i].postings.push([' ', ' ']);
+            if(this.detail.service != 'Anointing Service') {
+
+                this.detail.aisles[i].postings.push([' ', ' ']);
+            }
+
+            else {
+
+                this.detail.aisles[i].postings.push(['']);
+            }
         }
      }
    }
@@ -88,13 +139,107 @@ export class GetCrackingComponent implements OnInit {
 
    assignCommunionStewards():void {
 
-       this.assignAandBStewards();
-       this.assignCandDStewards(2);
-       this.assignCandDStewards(3);
+       this.assignAandB_Communion();
+       this.assignCandD_Communion(2);
+       this.assignCandD_Communion(3);
    }
 
 
-   assignAandBStewards():void {
+   assignAnointingStewards(): void {
+
+       this.assignA_Anointing();
+   }
+
+
+   assignA_Anointing() {
+
+       for(let i=0; i < this.detail.aisles.length; i++) {
+
+           let count = 1;
+
+           if(this.detail.aisles[i].postings.length == 5) {
+
+               count=2;
+           }
+
+           for(let j=0; j < count; j++) { 
+
+               let val=0;
+
+               while(val < 1) { 
+
+                   if(this.detail.assignedOldStewards.length < this.detail.oldStewards.length) {
+
+                       let index=Math.round(Math.random() * this.detail.oldStewards.length) - 1;
+                       index == -1 ? index = 0 : index=index;
+
+                       if(!this.detail.assignedStewards.includes(this.detail.oldStewards[index].name)) {
+
+                           this.detail.assignedStewards.push(this.detail.oldStewards[index].name);
+                           this.detail.assignedOldStewards.push(this.detail.oldStewards[index].name);
+                           this.detail.aisles[i].postings[j]=[this.detail.oldStewards[index].name];
+                           val++;
+                       }
+                   }
+                   else {
+
+                       let index=Math.round(Math.random() * this.detail.newStewards.length) - 1;
+                       index == -1 ? index = 0 : index=index;
+
+                       if(!this.detail.assignedStewards.includes(this.detail.newStewards[index].name)) {
+
+                           this.detail.assignedStewards.push(this.detail.newStewards[index].name);
+                           this.detail.aisles[i].postings[j]=[this.detail.newStewards[index].name];
+                           val++;
+                       }
+                   }
+                }
+            }
+       }
+
+       this.assignOthers_Anointing(1);
+       this.assignOthers_Anointing(2);
+       this.assignOthers_Anointing(3);
+   } 
+
+
+   assignOthers_Anointing(elevation:number) {
+
+       let totalStewards=this.detail.newStewards.concat(this.detail.oldStewards);
+
+       for(let i=0; i < this.detail.aisles.length; i++) {
+
+           let position=elevation;
+
+           if(this.detail.aisles[i].postings.length == 5) {
+
+               position++;
+           }
+
+           if(totalStewards.length == this.detail.assignedStewards.length) {
+
+               break;
+           }
+
+            let val=0;
+
+            while(val < 1) {
+
+               let index=Math.round(Math.random() * totalStewards.length) - 1;
+               index == -1 ? index=0 : index=index;
+
+               if(!this.detail.assignedStewards.includes(totalStewards[index].name)) {
+
+                   this.detail.aisles[i].postings[position]=[totalStewards[index].name];
+                   this.detail.assignedStewards.push(totalStewards[index].name);
+                   val++;
+               }
+           }
+       }
+   }
+
+
+   assignAandB_Communion():void {
 
        for(let i=0; i < this.detail.aisles.length; i++) {
 
@@ -113,7 +258,7 @@ export class GetCrackingComponent implements OnInit {
    }
 
 
-   assignCandDStewards(elevation:number):void {
+   assignCandD_Communion(elevation:number):void {
 
        let totalStewards=this.detail.newStewards.length + this.detail.oldStewards.length;
 
@@ -150,7 +295,6 @@ export class GetCrackingComponent implements OnInit {
 
                let index=Math.round(Math.random() * this.detail.newStewards.length) - 1;
                index == -1 ? index=0 : index=index;
-               console.log(index);
 
                if(!this.detail.assignedStewards.includes(this.detail.newStewards[index].name)) {
 
@@ -164,8 +308,6 @@ export class GetCrackingComponent implements OnInit {
 
                let index=Math.round(Math.random() * this.detail.oldStewards.length) - 1;
                index == -1 ? index=0 : index=index;
-               console.log(index);
-
                if(!this.detail.assignedStewards.includes(this.detail.oldStewards[index].name)) {
 
                    this.detail.assignedStewards.push(this.detail.oldStewards[index].name);
@@ -185,7 +327,6 @@ export class GetCrackingComponent implements OnInit {
        while(i < 1) {
 
            let index=Math.round(Math.random() * this.detail.oldStewards.length) - 1;
-
            index == -1 ? index=0 : index=index;
 
            if(!this.detail.assignedStewards.includes(this.detail.oldStewards[index].name)) {
@@ -205,7 +346,6 @@ export class GetCrackingComponent implements OnInit {
 
                let index=Math.round(Math.random() * this.detail.oldStewards.length) - 1;
                index == -1 ? index=0 : index=index;
-               console.log(index);
 
                if(!this.detail.assignedStewards.includes(this.detail.oldStewards[index].name)) {
 
@@ -219,7 +359,7 @@ export class GetCrackingComponent implements OnInit {
 
                let index=Math.round(Math.random() * this.detail.newStewards.length) - 1;
                index == -1 ? index=0 : index=index;
-               console.log(index);
+
 
                if(!this.detail.assignedStewards.includes(this.detail.newStewards[index].name)) {
 

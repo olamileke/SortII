@@ -86,9 +86,9 @@ export class DetailService {
 
   assignedStewards=[];
   assignedNewStewards=[];
+  assignedOldStewards=[];
 
   service='Communion Service';
-  numPostings=2;
   posted=false;
 
   constructor() { }
