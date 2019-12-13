@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
 import { DetailService } from '../../services/detail.service';
 import { NotificationService } from '../../services/notification.service';
@@ -10,6 +12,8 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class PostingsComponent implements OnInit {
 
+  EXCEL_TYPE='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  EXCEL_EXTENSION='.xlsx';
   currentDate:string;
   months=['Jan', 'Feb', 'March', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   service=this.detail.service;
@@ -69,6 +73,43 @@ export class PostingsComponent implements OnInit {
 
       aisles[0].postings[details.elevation][details.position]=details.name;
       this.notification.showSuccessMessage('Name changed successfully!');
+  }
+
+
+  downloadPostings() {
+
+     let workbook:XLSX.WorkBook={Sheets:{}, SheetNames:[]};
+
+     for(let i=0; i < this.aisles.length; i++) {
+
+         let worksheet:XLSX.WorkSheet=XLSX.utils.aoa_to_sheet(this.formatPostings(this.aisles[i].postings));
+         workbook.Sheets[this.aisles[i].name]=worksheet;
+         workbook.SheetNames.push(this.aisles[i].name);
+     }
+
+     const buffer=XLSX.write(workbook, {bookType:'xlsx', type:'array'});
+     const data:Blob=new Blob([buffer], {type:this.EXCEL_TYPE});
+     let filename=this.detail.service + ' ' + 'postings'
+     FileSaver.saveAs(data, filename);
+  }
+
+
+  formatPostings(postings:any[]) {
+
+      let sorts=JSON.parse(JSON.stringify(postings));
+
+      for(let i=0; i < sorts.length; i++) {
+
+          for(let j=0; j < sorts[i].length; j++) {
+
+              if(sorts[i][j].trim().length == 0) {
+
+                  sorts[i][j]= 'empty';
+              }
+          }
+      }
+
+      return sorts;
   }
 
 }
