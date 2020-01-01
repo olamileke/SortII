@@ -25,11 +25,11 @@ export class AddAisleComponent implements OnInit {
   		name:[this.aisles[0],[Validators.required, Validators.minLength(3)]],
   		coordinator:['', [Validators.required, Validators.minLength(3)]],
   		rows:[this.aisleRows[0], [Validators.required]]
-  	})
-  }
+  	}) 
 
+   }
 
-  addAisle(form:FormGroup){
+  addAisle(form:FormGroup){ 
 
   	let aisle={name:'', coordinator:'', rows:4, postings:[]};
 

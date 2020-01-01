@@ -11,6 +11,7 @@ input
 	outline:none;
 	border-color:transparent;
 	color:#fff;
+	padding:0;
 }
 
 .fa-check

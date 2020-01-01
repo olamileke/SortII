@@ -76,12 +76,12 @@ export class DetailService {
       {name:'Tofunmi Ghost', status:'old'},
       {name:'Omogbanle Favour', status:'old'},
       {name:'Ajala David', status:'old'},
-      {name:'Abu Solomon', status:'old'},
-      {name:'Malik David', status:'old'},
-      {name:'Ronnie Favour', status:'old'},
-      {name:'Nnama Jeff', status:'old'},
-      {name:'Fregehene Dieko', status:'old'},
-      {name:'Chinedu 500', status:'old'}
+      // {name:'Abu Solomon', status:'old'},
+      // {name:'Malik David', status:'old'},
+      // {name:'Ronnie Favour', status:'old'},
+      // {name:'Nnama Jeff', status:'old'},
+      // {name:'Fregehene Dieko', status:'old'},
+      // {name:'Chinedu 500', status:'old'}
   ];
 
   assignedStewards=[];

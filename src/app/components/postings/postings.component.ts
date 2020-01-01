@@ -71,7 +71,10 @@ export class PostingsComponent implements OnInit {
           return aisle.name == details.aisle;
       });
 
+      console.log(details);
+
       aisles[0].postings[details.elevation][details.position]=details.name;
+      details.name='';
       this.notification.showSuccessMessage('Name changed successfully!');
   }
 

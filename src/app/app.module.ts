@@ -18,6 +18,8 @@ import { GetCrackingComponent } from './components/get-cracking/get-cracking.com
 import { PostingsComponent } from './components/postings/postings.component';
 import { StewardComponent } from './components/steward/steward.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { ErrorComponent } from './components/error/error.component';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
