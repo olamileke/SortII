@@ -15,7 +15,7 @@ export class PostingsComponent implements OnInit {
   EXCEL_TYPE='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
   EXCEL_EXTENSION='.xlsx';
   currentDate:string;
-  months=['Jan', 'Feb', 'March', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  months=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   service=this.detail.service;
   aisles=this.detail.aisles;
   selectedAisle=this.aisles[0];
@@ -37,7 +37,7 @@ export class PostingsComponent implements OnInit {
   	let currentMonth=this.months[date.getMonth()];
   	let currentYear=date.getFullYear();
 
-  	return `${currentMonth} ${currentDate} ${currentYear}`;
+  	return `${currentMonth} ${currentDate},${currentYear}`;
   }
 
 
@@ -92,7 +92,7 @@ export class PostingsComponent implements OnInit {
 
      const buffer=XLSX.write(workbook, {bookType:'xlsx', type:'array'});
      const data:Blob=new Blob([buffer], {type:this.EXCEL_TYPE});
-     let filename=this.detail.service + ' ' + 'postings'
+     let filename=this.detail.service + `_${this.getCurrentDate()}_postings`;
      FileSaver.saveAs(data, filename);
   }
 

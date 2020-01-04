@@ -13,23 +13,25 @@ export class AddAisleComponent implements OnInit {
 
   aisleForm:FormGroup;
 
-  aisles=['Joy', 'Gentleness', 'Patience', 'Kindness', 'Love', 'Faithfulness', 'Goodness', 'Temperance', 'Peace', 'Peace Plus'];
-  aisleRows=[5,4,4,4,5,5,4,4,4,4];
-  index=0;
-
   constructor(private fb:FormBuilder, private details:DetailService, private notification:NotificationService) { }
 
   ngOnInit() {
 
   	this.aisleForm=this.fb.group({
-  		name:[this.aisles[0],[Validators.required, Validators.minLength(3)]],
+  		name:[this.details.aisleNames[0],[Validators.required, Validators.minLength(3)]],
   		coordinator:['', [Validators.required, Validators.minLength(3)]],
-  		rows:[this.aisleRows[0], [Validators.required]]
+  		rows:[this.details.aisleRows[0], [Validators.required]]
   	}) 
 
    }
 
   addAisle(form:FormGroup){ 
+
+    if(this.details.posted) {
+
+        this.notification.showErrorMessage('Posting completed!');
+        return false;
+    }
 
   	let aisle={name:'', coordinator:'', rows:4, postings:[]};
 
@@ -39,10 +41,18 @@ export class AddAisleComponent implements OnInit {
 
   	this.details.aisles.push(aisle);
   	this.notification.showSuccessMessage('Aisle added successfully');
-    this.index++;
-  	form.get('name').setValue(this.aisles[this.index]);
-    form.get('rows').setValue(this.aisleRows[this.index]);
+
+    this.reflectAisleState(aisle.name);
+  	form.get('name').setValue(this.details.aisleNames[0]);
+    form.get('rows').setValue(this.details.aisleRows[0]);
   	form.get('coordinator').reset();
   }
 
+
+  reflectAisleState(name:string) {
+
+      let index = this.details.aisleNames.indexOf(name);
+      this.details.aisleNames.splice(index, 1);
+      this.details.aisleRows.splice(index, 1);
+  }
 }

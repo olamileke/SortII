@@ -46,16 +46,8 @@ export class StewardComponent implements OnInit {
 
   emitChange() {
 
-    if(this.new_name.length > 5) {
-
-        let details={aisle:this.aisle, elevation:this.elevation, position:this.position, name:this.new_name};
-
-      	this.changeName.emit(details);
-    }
-    else {
-
-        this.notification.showErrorMessage('Name must be at least 5 characters');
-    }
+      let details={aisle:this.aisle, elevation:this.elevation, position:this.position, name:this.new_name};
+    	this.changeName.emit(details);
   }
 
 }

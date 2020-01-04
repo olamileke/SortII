@@ -59,7 +59,9 @@ export class GetCrackingComponent implements OnInit {
 
     if(this.detail.service != 'Anointing Service') {
 
-        this.assignCommunionStewards();
+        this.assignCommunionStewardsFirst();
+        this.assignCommunionStewardsNext();
+        this.assignLastElevations()
     }
     else {
 
@@ -78,11 +80,10 @@ export class GetCrackingComponent implements OnInit {
       return false;
     }
 
-    let totalStewards=this.detail.oldStewards.concat(this.detail.newStewards);
 
     if(this.detail.service == 'Anointing Service') {
 
-        if(totalStewards.length < 15) {
+        if(this.detail.allStewards.length < 15) {
 
             this.notification.showErrorMessage("Ateast 15 stewards needed initially");
             return false;
@@ -90,9 +91,9 @@ export class GetCrackingComponent implements OnInit {
     }
     else {
 
-        if(totalStewards.length < 40) {
+        if(this.detail.allStewards.length < 25) {
 
-            this.notification.showErrorMessage("Ateast 40 stewards needed initially");
+            this.notification.showErrorMessage("Ateast 25 stewards needed initially");
             return false;
         }
     }
@@ -122,11 +123,29 @@ export class GetCrackingComponent implements OnInit {
    }
 
 
-   assignCommunionStewards():void {
+   assignCommunionStewardsFirst():void {
 
-       this.assignAandB_Communion();
-       this.assignCandD_Communion(2);
-       this.assignCandD_Communion(3);
+       this.assignAislesCommunion(0, 0);
+       this.assignAislesCommunion(1, 0);
+       this.assignAislesCommunion(2, 0);
+       this.assignAislesCommunion(3, 0);
+   }
+
+
+   assignCommunionStewardsNext():void {
+
+       this.assignAislesCommunion(0, 1);
+       this.assignAislesCommunion(1, 1);
+       this.assignAislesCommunion(2, 1);
+       this.assignAislesCommunion(3, 1);
+   }
+
+
+
+   assignLastElevations():void {
+
+       this.assignAislesCommunion(4, 0);
+       this.assignAislesCommunion(4, 1);
    }
 
 
@@ -168,8 +187,6 @@ export class GetCrackingComponent implements OnInit {
 
    assignOthers_Anointing(elevation:number) {
 
-       let totalStewards=this.detail.newStewards.concat(this.detail.oldStewards);
-
        for(let i=0; i < this.detail.aisles.length; i++) {
 
            let position=elevation;
@@ -179,59 +196,45 @@ export class GetCrackingComponent implements OnInit {
                position++;
            }
 
-           if(totalStewards.length == this.detail.assignedStewards.length) {
+           if(this.detail.allStewards.length == this.detail.assignedStewards.length) {
 
                break;
            }
 
-           this.detail.aisles[i].postings[position]=[this.getSteward(totalStewards)];
+           this.detail.aisles[i].postings[position]=[this.getSteward(this.detail.allStewards)];
        }
    }
 
+   assignAislesCommunion(elevation:number, position):void {
 
-   assignAandB_Communion():void {
+       for(let j=0; j < this.detail.aisles.length; j++) {
 
-       for(let i=0; i < this.detail.aisles.length; i++) {
+           let index = elevation;
 
-           let aisles=2;
+           if(index == 3) {
 
-           if(this.detail.aisles[i].rows == 5) {
+               if(this.detail.aisles[j].postings.length == 4) {
 
-               aisles=3;
-           }    
+                   break;
+               }
+           }
 
-           for(let j=0; j < aisles; j++) {
+           if(index == 4) {
 
-               this.detail.aisles[i].postings[j]=this.assignElevations();
+               if(this.detail.aisles[j].postings.length == 4) {
+
+                   index = 3;
+               }
+           }
+
+           if(this.detail.allStewards.length > this.detail.assignedStewards.length) {
+
+               this.detail.aisles[j].postings[index][position]=this.assignSteward(position);
+           }
+           else {
+               break;   
            }
        }
-   }
-
-
-   assignCandD_Communion(elevation:number):void {
-
-       let totalStewards=this.detail.newStewards.length + this.detail.oldStewards.length;
-
-        for(let i=0; i < 2; i++) {
-
-           for(let j=0; j < this.detail.aisles.length; j++) {
-
-               let index=elevation;
-
-               if(this.detail.aisles[j].postings.length == 5) {
-
-                   index++;
-               }
-
-               if(totalStewards > this.detail.assignedStewards.length) {
-
-                   this.detail.aisles[j].postings[index][i]=this.assignSteward(i);
-               }
-               else {
-                   break;   
-               }
-           }
-        }
    }
 
 
@@ -243,7 +246,13 @@ export class GetCrackingComponent implements OnInit {
        }
        else {
 
-          return this.getSteward(this.detail.oldStewards);
+           if(this.detail.assignedOldStewards.length < this.detail.oldStewards.length) {
+
+              return this.getSteward(this.detail.oldStewards, this.detail.assignedOldStewards);
+           }
+           else {
+              return this.getSteward(this.detail.newStewards, this.detail.assignedNewStewards)
+           }
        }
    }
 
@@ -271,24 +280,4 @@ export class GetCrackingComponent implements OnInit {
             } 
         }
    }
-
-
-   assignElevations():any {
-
-       let posting=[];
-       posting.push(this.getSteward(this.detail.oldStewards));
-
-       if(this.detail.assignedNewStewards.length == this.detail.newStewards.length) {
-
-           posting.push(this.getSteward(this.detail.oldStewards));        
-       }
-       else {
-
-           posting.push(this.getSteward(this.detail.newStewards, this.detail.assignedNewStewards));        
-       }
-   
-       return posting;
-   }
-
-
 }

@@ -37,7 +37,7 @@ export class AddStewardComponent implements OnInit {
       steward['name']=form.get('name').value;
       steward['status']=form.get('status').value;
 
-      this.detail.stewards.push(steward);
+      this.detail.allStewards.push(steward);
 
       if(steward['status'] == 'Old') {
 

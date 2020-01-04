@@ -20,7 +20,9 @@ export class ViewAisleComponent implements OnInit {
 
   deleteAisle(index:number) {
 
-  	this.detail.aisles.splice(index,1);
+    this.detail.aisleNames.unshift(this.aisles[index].name);
+    this.detail.aisleRows.unshift(this.aisles[index].rows);
+  	this.detail.aisles.splice(index,1); 
   	this.notification.showSuccessMessage('Aisle deleted Successfully');
   }
 
