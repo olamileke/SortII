@@ -32,7 +32,7 @@ export class AddStewardComponent implements OnInit {
         return false;
       }
 
-      let steward={name:'', level:100, status:''};
+      let steward={name:'', status:''};
 
       steward['name']=form.get('name').value;
       steward['status']=form.get('status').value;

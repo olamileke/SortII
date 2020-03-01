@@ -53,7 +53,7 @@
 }
 
 
-.download-icon
+.action-icons
 {
 	position:fixed;
 	bottom:7vh;
@@ -66,6 +66,15 @@ img
 {
 	width:50px;
 	height:50px;
+}
+
+
+.search-icon img
+{
+	position:relative;
+	left:2px;
+	width:43px;
+	height:45px;	
 }
 
 

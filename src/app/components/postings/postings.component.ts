@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
@@ -20,10 +20,14 @@ export class PostingsComponent implements OnInit {
   aisles=this.detail.aisles;
   selectedAisle=this.aisles[0];
   rows=['A', 'B', 'C', 'D', 'E'];
+  altRows = ['A1', 'A2', 'B', 'C', 'D'];
+
+  @Output() search = new EventEmitter();
+  @Input() display = false;
 
   constructor(private detail:DetailService, private notification:NotificationService) { }
 
-  ngOnInit() {
+  ngOnInit() { 
 
   	this.currentDate=this.getCurrentDate();
   }
@@ -58,9 +62,16 @@ export class PostingsComponent implements OnInit {
   }
 
 
-  getRow(i:number): string {
+  getRow(i:number, numElevations:number): string {
 
-      return this.rows[i];
+      if(numElevations == 4) {
+        
+          return this.rows[i];
+      }
+      else {
+
+          return this.altRows[i];
+      }
   }
 
 
@@ -74,6 +85,14 @@ export class PostingsComponent implements OnInit {
       console.log(details);
 
       aisles[0].postings[details.elevation][details.position]=details.name;
+      this.detail.searchStewards.filter(function(steward) {
+
+          if(aisles[0].name == steward.aisle && steward.elevation == details.elevation && steward.position == details.position) {
+
+              steward.name = details.name.toLowerCase();
+          }
+      })
+
       details.name='';
       this.notification.showSuccessMessage('Name changed successfully!');
   }
@@ -113,6 +132,12 @@ export class PostingsComponent implements OnInit {
       }
 
       return sorts;
+  }
+
+
+  displaySearch() {
+
+      this.search.emit();
   }
 
 }

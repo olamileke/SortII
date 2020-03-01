@@ -125,15 +125,6 @@ export class GetCrackingComponent implements OnInit {
 
    assignCommunionStewardsFirst():void {
 
-       this.assignAislesCommunion(0, 0);
-       this.assignAislesCommunion(1, 0);
-       this.assignAislesCommunion(2, 0);
-       this.assignAislesCommunion(3, 0);
-   }
-
-
-   assignCommunionStewardsNext():void {
-
        this.assignAislesCommunion(0, 1);
        this.assignAislesCommunion(1, 1);
        this.assignAislesCommunion(2, 1);
@@ -141,11 +132,20 @@ export class GetCrackingComponent implements OnInit {
    }
 
 
+   assignCommunionStewardsNext():void {
+
+       this.assignAislesCommunion(0, 0);
+       this.assignAislesCommunion(1, 0);
+       this.assignAislesCommunion(2, 0);
+       this.assignAislesCommunion(3, 0);
+   }
+
+
 
    assignLastElevations():void {
 
-       this.assignAislesCommunion(4, 0);
        this.assignAislesCommunion(4, 1);
+       this.assignAislesCommunion(4, 0);
    }
 
 
@@ -229,9 +229,13 @@ export class GetCrackingComponent implements OnInit {
 
            if(this.detail.allStewards.length > this.detail.assignedStewards.length) {
 
-               this.detail.aisles[j].postings[index][position]=this.assignSteward(position);
+               let steward = this.assignSteward(position);
+               let searchObject = {name:steward.toLowerCase(), position:position, aisle:this.detail.aisles[j].name, elevation:index};
+               this.detail.searchStewards.push(searchObject);
+               this.detail.aisles[j].postings[index][position] = steward;
            }
            else {
+               console.log(this.detail.searchStewards);
                break;   
            }
        }

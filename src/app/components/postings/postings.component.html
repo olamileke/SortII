@@ -18,13 +18,19 @@
 				<app-steward *ngFor='let steward of post; index as j' [name]=steward [aisle]=selectedAisle.name [elevation]=i [position]=j class='my-1' (changeName)='changeName($event)'></app-steward>
 			</div>
 			<div class='d-flex justify-content-center align-items-center p-2 elevation my-1'>
-				<p class='m-0'>{{ getRow(i) }}</p>
+				<p class='m-0'>{{ getRow(i, selectedAisle.postings.length) }}</p>
 			</div>
 		</li>
 	</ul>
 
-	<div class='download-icon' (click)='downloadPostings()'>
-		<img src="../../../assets/Images/Postings/download.svg">
+
+	<div class='action-icons d-flex flex-column'>
+		<div class='search-icon mb-3' (click)='displaySearch()'>
+			<img src="../../../assets/Images/Postings/search.svg">
+		</div>
+		<div class='download-icon' (click)='downloadPostings()'> 
+			<img src="../../../assets/Images/Postings/download.svg">
+		</div>
 	</div>
 
 </div>
