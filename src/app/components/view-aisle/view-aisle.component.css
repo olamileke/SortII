@@ -1,12 +1,5 @@
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-
-:host
-{
-	font-family:'Quicksand', sans-serif;
-}
-
-
 .aisles-body-container
 {
 	min-height:80vh;
@@ -40,23 +33,16 @@
 	background:rgba(0,0,0,0.01);
 }
 
-
 .aisle-name
 {
-	font-size:1.25em;
+	font-size:1.13em;
 }
 
-.circle
-{
-	width:30px;
-	height:30px;
-	border-radius:50%;
-	border:1.5px solid #fff;
-}
-
-.fa-times
+.fa-times-circle
 {
 	color:#fff;
+	font-size:1.4em;
+	cursor: pointer;
 }
 
 

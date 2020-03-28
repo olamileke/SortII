@@ -17,7 +17,7 @@ export class AddAisleComponent implements OnInit {
 
   ngOnInit() {
 
-  	this.aisleForm=this.fb.group({
+  	this.aisleForm = this.fb.group({
   		name:[this.details.aisleNames[0],[Validators.required, Validators.minLength(3)]],
   		coordinator:['', [Validators.required, Validators.minLength(3)]],
   		rows:[this.details.aisleRows[0], [Validators.required]]
@@ -33,11 +33,11 @@ export class AddAisleComponent implements OnInit {
         return false;
     }
 
-  	let aisle={name:'', coordinator:'', rows:4, postings:[]};
+  	let aisle = {name:'', coordinator:'', rows:4, postings:[]};
 
-  	aisle['name']=form.get('name').value.charAt(0).toUpperCase() + form.get('name').value.slice(1,).toLowerCase();
-  	aisle['coordinator']=form.get('coordinator').value;
-  	aisle['rows']=form.get('rows').value;
+  	aisle['name'] = form.get('name').value.charAt(0).toUpperCase() + form.get('name').value.slice(1,).toLowerCase();
+  	aisle['coordinator'] = form.get('coordinator').value;
+  	aisle['rows'] = form.get('rows').value;
 
   	this.details.aisles.push(aisle);
   	this.notification.showSuccessMessage('Aisle added successfully');
@@ -49,6 +49,7 @@ export class AddAisleComponent implements OnInit {
   }
 
 
+  // removing the added aisle from the list of aisles
   reflectAisleState(name:string) {
 
       let index = this.details.aisleNames.indexOf(name);

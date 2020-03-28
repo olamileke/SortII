@@ -17,7 +17,7 @@ export class AddStewardComponent implements OnInit {
 
   ngOnInit() {
 
-  	this.stewardForm=this.fb.group({
+  	this.stewardForm = this.fb.group({
   		name:['', [Validators.required, Validators.minLength(5)]],
   		status:['Old', [Validators.required]]
   	});
@@ -32,10 +32,10 @@ export class AddStewardComponent implements OnInit {
         return false;
       }
 
-      let steward={name:'', status:''};
+      let steward = {name:'', status:''};
 
-      steward['name']=form.get('name').value;
-      steward['status']=form.get('status').value;
+      steward['name'] = form.get('name').value;
+      steward['status'] = form.get('status').value;
 
       this.detail.allStewards.push(steward);
 

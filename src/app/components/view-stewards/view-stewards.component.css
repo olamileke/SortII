@@ -43,13 +43,14 @@
 {
 	width:30px;
 	height:30px;
-	border-radius:50%;
+	border-radius:50%; 
 	border:1.5px solid #fff;
 }
 
-.fa-times
+.fa-times-circle
 {
-	color:#fff;
+	font-size:1.3em;
+	cursor: pointer;
 }
 
 

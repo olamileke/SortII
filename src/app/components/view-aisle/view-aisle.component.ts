@@ -12,7 +12,7 @@ export class ViewAisleComponent implements OnInit {
 
   constructor(private detail:DetailService, private notification:NotificationService) { }
 
-  aisles=this.detail.aisles;
+  aisles = this.detail.aisles;
 
   ngOnInit() {
   }

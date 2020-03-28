@@ -26,18 +26,16 @@ export class MainComponent implements OnInit {
 
   tabs={addAisles:true, viewAisles:false, addSteward:false, viewStewards:false, getCracking:false, postings:false}
 
-  changeTab(tab:any) {
+  changeTab(tab:any, toggle=true) {
 
-  	let tabKeys=Object.keys(this.tabs);
+    for(let tab in this.tabs) {
+        
+        this.tabs[tab] = false;
+    }
 
-  	for(let i=0; i < tabKeys.length; i++) {
+    this.tabs[tab] = true;
 
-  		this.tabs[tabKeys[i]]=false;
-  	}
-
-  	this.tabs[tab]=true;
-
-    if(screen.width <= 991) {
+    if(screen.width <= 991 && toggle) {
 
         this.toggleNav();
     }
@@ -47,15 +45,15 @@ export class MainComponent implements OnInit {
 
   toggleNav() {
 
-     this.showNav=!this.showNav;
+     this.showNav = !this.showNav;
   }
 
 
   togglePostings() {
 
-    this.changeTab('postings');
+    this.changeTab('postings', false);
     this.sidebar.setActiveTab('postings');
-    this.sidebar.posted=true;
+    this.sidebar.posted = true;
   }
 
 

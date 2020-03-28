@@ -128,9 +128,9 @@ div.navtoggle
 div.navtoggle span, div.navtoggle span:after, div.navtoggle span:before
 {
 	position:absolute;
-	  display: block;
-	  height:2px;
-	  background: #fff;
+	display: block;
+	height:2px;
+	background: #fff;
 }
 
 div.navtoggle span
@@ -140,11 +140,11 @@ div.navtoggle span
 
 div.navtoggle span:after, div.navtoggle span:before
 {
-	  top:-8px;
-	  left:0;
-	  width:125%;
-	  content: '';
-	  background: #fff;
+	top:-8px;
+	left:0;
+	width:125%;
+	content: '';
+	background: #fff;
 }
 
 div.navtoggle span:before

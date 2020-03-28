@@ -8,7 +8,7 @@ export class DetailService {
   aisleNames = ['Joy', 'Gentleness', 'Patience', 'Kindness', 'Love', 'Faithfulness', 'Goodness', 'Temperance', 'Peace', 'Peace Plus'];
   aisleRows = [5,4,4,4,5,5,4,4,4,4];
 
-  aisles=[];
+  aisles = [];
 
   allStewards=[
     {name:'Victor Nnaji', status:'new'},
@@ -38,7 +38,7 @@ export class DetailService {
     {name:'Odedo Bright', status:'old'},
   ];
 
-  newStewards=[
+  newStewards = [
     {name:'Victor Nnaji', status:'new'},
     {name:'Chijindu Nicholas', status:'new'},
     {name:'Olude Ore', status:'new'},
@@ -55,7 +55,7 @@ export class DetailService {
     {name:'Bojuwoye Glory', status:'new'},
   ];
 
-  oldStewards=[
+  oldStewards = [
     {name:'Adeleye Ifeoluwa', status:'old'},
     {name:'Ekpo Winnifred', status:'old'},
     {name:'Ehanire Marousa', status:'old'},
@@ -69,12 +69,12 @@ export class DetailService {
     {name:'Odedo Bright', status:'old'},
   ];
 
-  assignedStewards=[];
-  assignedNewStewards=[];
-  assignedOldStewards=[];
+  assignedStewards = [];
+  assignedNewStewards = [];
+  assignedOldStewards = [];
 
-  service='Communion Service';
-  posted=false;
+  service = 'Communion Service';
+  posted = false;
 
   searchStewards = [];
 

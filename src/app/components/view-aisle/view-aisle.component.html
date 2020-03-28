@@ -1,4 +1,4 @@
-
+  
 <div class='text-white aisles-body-container d-flex flex-column' [class.justify-content-center]='aisles.length == 0'>
 	
 	<div class='header-text p-3 mb-2' *ngIf='aisles.length > 0'>
@@ -13,9 +13,7 @@
 				<p class='m-0'>{{ aisle.rows }} rows</p>	
 			</div>
 			<div>
-				<div class='circle d-flex justify-content-center align-items-center' (click)='deleteAisle(i)' style='cursor:pointer'>
-					<i class='fa fa-times'></i>
-				</div>
+				<i class='fa fa-times-circle' (click)='deleteAisle(i)'></i>
 			</div>
 		</li>
 	</ul>

@@ -10,7 +10,7 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class ViewStewardsComponent implements OnInit {
 
-  stewards=this.detail.allStewards;
+  stewards = this.detail.allStewards;
 
   constructor(private detail:DetailService, private notification:NotificationService) { }
 
@@ -18,9 +18,23 @@ export class ViewStewardsComponent implements OnInit {
   } 
 
 
-  deleteSteward(i:number) {
+  deleteSteward(i:number, name:string, status:string) {
     
-    this.stewards.splice(i,1);	
+    this.stewards.splice(i,1);	 
+
+    if(status == 'old') {
+		let idx = this.detail.oldStewards.map(steward => {
+			return steward.name;
+		}).indexOf(name);
+		this.detail.oldStewards.splice(idx,1);
+	}
+	else {
+		let idx = this.detail.newStewards.map(steward => {
+			return steward.name;
+		}).indexOf(name);
+		this.detail.newStewards.splice(idx,1);
+	}
+
     this.notification.showSuccessMessage("Steward deleted successfully");
   }
 

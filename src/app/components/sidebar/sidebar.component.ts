@@ -9,16 +9,15 @@ import { DetailService } from '../../services/detail.service';
 })
 export class SidebarComponent implements OnInit {
 
-  tabs={addAisles:false, viewAisles:false, addSteward:false, viewStewards:false, getCracking:false, postings:false}
-  posted=this.detail.posted;
+  tabs = {addAisles:true, viewAisles:false, addSteward:false, viewStewards:false, getCracking:false, postings:false}
+  posted = this.detail.posted;
 
-  @Output() changeTab=new EventEmitter();
+  @Output() changeTab = new EventEmitter();
 
   constructor(private detail:DetailService) { }
 
   ngOnInit() {
 
-  	this.setActiveTab('addAisles');
   }
 
 
@@ -26,15 +25,12 @@ export class SidebarComponent implements OnInit {
 
   	if(!this.tabs[tab]) {
 
-	  	let tabKeys=Object.keys(this.tabs);
-
-	  	for(let i=0; i < tabKeys.length; i++) {
-
-	  		this.tabs[tabKeys[i]]=false;
-	  	}
-
-	  	this.tabs[tab]=true;
-
+		for(let tab in this.tabs) {
+        
+			this.tabs[tab] = false;
+		}
+	
+		this.tabs[tab] = true;
 		  	
 	  	if(emit) {
 

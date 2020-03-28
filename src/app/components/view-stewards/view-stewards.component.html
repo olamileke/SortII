@@ -12,9 +12,7 @@
 				<p class='m-0'>{{ steward.status }}</p>	
 			</div>
 			<div>
-				<div class='circle d-flex justify-content-center align-items-center' (click)='deleteSteward(i)' style='cursor:pointer'>
-					<i class='fa fa-times'></i>
-				</div>
+				<i class='fa fa-times-circle' (click)='deleteSteward(i, steward.name, steward.status)'></i>
 			</div>
 		</li>
 	</ul> 
