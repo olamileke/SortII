@@ -20,6 +20,7 @@ import { StewardComponent } from './components/steward/steward.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { environment } from '../environments/environment';
     GetCrackingComponent,
     PostingsComponent,
     StewardComponent,
-    ErrorComponent
+    ErrorComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

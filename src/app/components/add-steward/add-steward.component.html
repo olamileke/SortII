@@ -18,8 +18,12 @@
 					<option value='New' selected>New</option>
 				</select>
 			</div>
-			<div class='form-group'>
+			<div class='form-group d-flex align-items-end justify-content-between'>
 				<button type="submit" class='p-2 text-white' [disabled]='stewardForm.invalid'>Add</button>
+				<div class='d-flex align-items-end attendance-text'>
+					<p class='text-white m-0 mr-2'>use attendance</p>
+					<input type='checkbox' (click)='toggleUseAttendance()' checked>
+				</div>
 			</div>
 		</form>		
 	</div>

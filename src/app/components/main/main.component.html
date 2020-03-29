@@ -15,7 +15,7 @@
 		<div class='col-11 col-md-8 col-lg-5 tab-body' [class.alt-padding]='tabs.postings'>
 			<app-add-aisle *ngIf="tabs.addAisles"></app-add-aisle>
 			<app-view-aisle *ngIf='tabs.viewAisles'></app-view-aisle>
-			<app-add-steward *ngIf='tabs.addSteward'></app-add-steward>
+			<app-add-steward *ngIf='tabs.addSteward' (attendanceUpload)='toggleDisplayAttendanceUpload()'></app-add-steward>
 			<app-view-stewards *ngIf='tabs.viewStewards'></app-view-stewards>
 			<app-get-cracking *ngIf='tabs.getCracking' (postings)='togglePostings()'></app-get-cracking>
 			<app-postings *ngIf='tabs.postings' (search)='toggleSearch()' [display]='displaySearch'></app-postings>
@@ -23,6 +23,9 @@
 	</div>
 </div>
 
+<div class='attendance-file-parent text-white' [class.active]='displayAttendanceUpload'>
+	<app-file-upload (uploaded)='toggleDisplayAttendanceUpload()'></app-file-upload>
+</div>
 
 <div class='search-container px-0' [class.active]='displaySearch'>
 	
@@ -56,7 +59,5 @@
 			</div>
 		</div>
 	</div>
-
-
 	<button class='p-1 text-white' (click)='toggleSearch()'>close</button>
 </div>

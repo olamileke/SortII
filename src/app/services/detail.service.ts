@@ -7,6 +7,7 @@ export class DetailService {
 
   aisleNames = ['Joy', 'Gentleness', 'Patience', 'Kindness', 'Love', 'Faithfulness', 'Goodness', 'Temperance', 'Peace', 'Peace Plus'];
   aisleRows = [5,4,4,4,5,5,4,4,4,4];
+  chaplaincyAttendance = [];
 
   aisles = [];
 
@@ -77,6 +78,8 @@ export class DetailService {
   posted = false;
 
   searchStewards = [];
+
+  fileUploaded:boolean = false;
 
   constructor() { }
 }

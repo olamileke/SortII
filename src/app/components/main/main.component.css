@@ -19,7 +19,6 @@
  	opacity:1;
  	z-index:9999;
  }
- 
 
  .search-box
  {
@@ -27,14 +26,12 @@
  	top:-15vh;
  }
 
- 
  .search-parent
  {
  	position:absolute;
  	top:30vh;
  	width:90%;
  }
-
 
  .search-msg, .search-results
  {
@@ -103,7 +100,7 @@
  {
  	position:relative;
  	min-height:100vh;
- 	background:url("../../../assets/Images/Home/noisy_net.png");
+ 	background:url("/assets/Images/Home/noisy_net.png");
  }
 
 
@@ -164,6 +161,23 @@ div.navtoggle span:before
 	padding-top:14vh !important;
 }
 
+.attendance-file-parent
+{
+	position:fixed;
+	top:calc(100vh + 100px);
+	left:75vw;
+	height:100px;
+	width:250px;
+	background:rgba(0,0,0,0.15);
+	border-radius:8px 8px 0 0;
+	border-bottom-color:transparent;
+	transition:top 0.5s ease-out;
+}
+
+.attendance-file-parent.active
+{
+	top:calc(100vh - 100px);
+}
 
 @media(max-width:991px)
 {
@@ -174,14 +188,23 @@ div.navtoggle span:before
 		left:-50%;
 		width:50% !important;
 		z-index:999;
-		background:url("../../../assets/Images/Home/noisy_net.png");
+		background:url("/assets/Images/Home/noisy_net.png");
 		transition:left 0.5s ease-out;
 	}
-
 
 	.sidebar-container.active
 	{
 		left:0%;
+	}
+
+	.attendance-file-parent
+	{
+		left:calc(100vw - 260px);
+	}
+
+	.attendance-file-parent.active
+	{
+		top:calc(100vh - 110px);
 	}
 }
 

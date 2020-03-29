@@ -16,10 +16,12 @@ export class MainComponent implements OnInit {
 
   showNav = false;
   displaySearch = false;
+  displayAttendanceUpload:boolean = false;
   searchResults = [];
   searched = false;
   elevations = ['A', 'B', 'C', 'D'];
   altElevations = ['A1', 'A2', 'B', 'C', 'D'];
+  fileUploaded = this.detail.fileUploaded;
 
   ngOnInit() {
   }
@@ -50,7 +52,7 @@ export class MainComponent implements OnInit {
 
 
   togglePostings() {
-
+ 
     this.changeTab('postings', false);
     this.sidebar.setActiveTab('postings');
     this.sidebar.posted = true;
@@ -82,13 +84,10 @@ export class MainComponent implements OnInit {
 
         this.searched = false;
     }
-
-    // console.log(searchResults);
   }
 
 
   getStewardPartner(aisle:string, elevation:number, position:number):string {
-
       if(position == 0) {
 
           position = 1;
@@ -97,24 +96,19 @@ export class MainComponent implements OnInit {
 
           position = 0;
       }
-
       let stewards = this.detail.searchStewards.filter(function(steward) {
 
           if(steward.aisle == aisle && steward.elevation == elevation && steward.position == position) {
-
               return steward;
           }
       })
-
 
       if(stewards.length > 0) {
 
           return stewards[0].name;
       }
 
-
       return 'None';
-
   }
 
 
@@ -130,4 +124,7 @@ export class MainComponent implements OnInit {
       }
   }
 
+  toggleDisplayAttendanceUpload() {
+      this.displayAttendanceUpload = !this.displayAttendanceUpload;
+  }
 }
