@@ -9,8 +9,14 @@
 		 
 		<form [formGroup]='stewardForm' (ngSubmit)='addSteward(stewardForm)'>
 			
-			<div class='form-group mb-4'>			
-				<input type="text" formControlName="name" class='form-control' placeholder="Name">
+			<div class='form-group mb-4' style='position:relative;'>			
+				<input type="text" formControlName="name" class='form-control' (input)='search($event.target.value)' placeholder="Name">
+				<div class='search-results w-100 px-4 py-3 text-muted' [class.active]='(similarNames$ | async)?.length > 0'>
+					<div class='my-2 d-flex justify-content-between align-items-center' *ngFor='let name of similarNames$ | async' (click)="setName(name)" style='cursor:pointer;'>
+						<p class='m-0'>{{ name }}</p>
+						<img src='/assets/Images/AddSteward/arrow-top-left.png'>
+					</div>
+				</div>
 			</div>
 			<div class='form-group'>
 				<select class='custom-select form-control-sm' formControlName='status'>
@@ -19,12 +25,20 @@
 				</select>
 			</div>
 			<div class='form-group d-flex align-items-end justify-content-between'>
-				<button type="submit" class='p-2 text-white' [disabled]='stewardForm.invalid'>Add</button>
-				<div class='d-flex align-items-end attendance-text'>
-					<p class='text-white m-0 mr-2'>use attendance</p>
-					<input type='checkbox' (click)='toggleUseAttendance()' checked>
+				<div class='d-flex'>
+					<button type="submit" class='p-2 text-white' [disabled]='stewardForm.invalid'>Add</button>
 				</div>
-			</div>
+				<div class='d-flex flex-column text-muted'>
+					<div class='d-flex align-items-end attendance-text'>
+						<p class='m-0 mr-2'>use chaplaincy attendance</p>
+						<input type='checkbox' (click)='toggleUseAttendance()' [disabled]='autoSuggest && detail.totalStewards.length == 0' [checked]='detail.chaplaincyAttendance.length > 0'>
+					</div>
+					<div class='d-flex align-items-end justify-content-end attendance-text'>
+						<p class='m-0 mr-2'>auto-suggest</p>
+						<input type='checkbox' (click)='toggleAutoSuggest()' [disabled]='useAttendance && detail.chaplaincyAttendance.length == 0' [checked]='detail.totalStewards.length > 0'>
+					</div>
+				</div>
+			</div> 
 		</form>		
 	</div>
 </div>

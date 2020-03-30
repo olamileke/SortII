@@ -16,12 +16,12 @@ export class MainComponent implements OnInit {
 
   showNav = false;
   displaySearch = false;
-  displayAttendanceUpload:boolean = false;
+  displayUpload:boolean = false;
   searchResults = [];
   searched = false;
   elevations = ['A', 'B', 'C', 'D'];
   altElevations = ['A1', 'A2', 'B', 'C', 'D'];
-  fileUploaded = this.detail.fileUploaded;
+  type:string = 'Chaplaincy Attendance';
 
   ngOnInit() {
   }
@@ -124,7 +124,12 @@ export class MainComponent implements OnInit {
       }
   }
 
-  toggleDisplayAttendanceUpload() {
-      this.displayAttendanceUpload = !this.displayAttendanceUpload;
+  toggleDisplayUpload(type:any=null):void {
+    if(type == 'close') {
+        this.displayUpload = false;
+        return;
+    }
+    this.displayUpload = !this.displayUpload;
+    type = null ? this.type = this.type : this.type = type;
   }
 }

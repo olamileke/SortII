@@ -26,3 +26,33 @@ input[type='checkbox']
 	position: relative;
 	top:-4px;
 }
+
+.search-results
+{
+	position: absolute;
+	top:calc(100% + 25px);
+	background:#fff;
+	border-radius:4px;
+	opacity:0;
+	z-index:-9999;
+	min-height:100px;
+	transition:all 0.3s ease-in;
+}
+
+.search-results.active
+{
+	opacity:1;
+	top:calc(100% + 15px);
+	z-index:9999;
+}
+
+.search-results::after
+{
+	content:'';
+	position:absolute;
+	border-left:13px solid transparent;
+	border-top:13px solid transparent;
+	border-right:13px solid transparent;
+	border-bottom:13px solid #fff;
+	top:-26px;
+}

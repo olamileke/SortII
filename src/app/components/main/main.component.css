@@ -50,15 +50,12 @@
  	padding-left:30px;
  	padding-bottom: 3px;
  	font-size: 1.2em;
- 	/*font-family:'Montserrat', sans-serif;*/
  }
-
 
  .search-parent input::placeholder
  {
  	color:#fff;
  }
-
 
  .search-container button
  {
@@ -85,8 +82,6 @@
 	font-size:1.1em;
  }
 
-
-
  .fa-search
  {
  	position:absolute;
@@ -103,13 +98,11 @@
  	background:url("/assets/Images/Home/noisy_net.png");
  }
 
-
  .sidebar-container
  {
  	position:fixed;
 	height:100%;
  }
-
 
 div.navtoggle
 {

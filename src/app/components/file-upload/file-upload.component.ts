@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import * as XLSX from 'xlsx';
 
 import { DetailService } from '../../services/detail.service';
@@ -12,6 +12,7 @@ import { NotificationService } from '../../services/notification.service';
 export class FileUploadComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput;
+  @Input() type;
   @Output() uploaded = new EventEmitter();
   hasFile:boolean = false;
   file:File;
@@ -46,9 +47,8 @@ export class FileUploadComponent implements OnInit {
 
   formatName(name:string):string {
 	if(name.length > 25) {
-		return name.slice(0,23) + '...';		
+		return name.slice(0,16) + '...';		
 	}
-
 	return name;
   }
 
@@ -85,7 +85,7 @@ export class FileUploadComponent implements OnInit {
 			return record['v'].trim();
 		}
 	}).filter(name => {
-		if(name != 'name' && name != 'undefined') {
+		if(name != 'name' && name != undefined) {
 			return name;
 		}
 	});
@@ -93,13 +93,22 @@ export class FileUploadComponent implements OnInit {
   }
 
   removeFile():void {
-	  this.hasFile = !this.hasFile;
+	this.hasFile = !this.hasFile;
   }
 
   setAttendance():void {
-	  this.detail.chaplaincyAttendance = this.names;
-	  this.notif.showSuccessMessage('Uploaded successfully!');
-	  this.uploaded.emit();
+	this.type == 'Chaplaincy Attendance' ? this.detail.chaplaincyAttendance = this.names : this.detail.totalStewards = this.names;
+	this.notif.showSuccessMessage('Uploaded successfully!');
+	this.uploaded.emit();
+	setTimeout(() => {
+		this.clear();
+	}, 1000);
   }
+
+  clear():void {
+	this.hasFile = !this.hasFile;
+	this.fileName = ' ';
+	this.names = [];
+   }
 
 }
