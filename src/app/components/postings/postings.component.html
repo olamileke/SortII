@@ -2,7 +2,7 @@
 <div class='text-white'>
 	
 	<div class='mb-4 px-1'>
-		<select class='form-control' (change)='changeSelectedAisle($event)'>
+		<select class='form-control custom-select' (change)='changeSelectedAisle($event)'>
 			<option *ngFor='let aisle of aisles' value="{{ aisle.name }}">{{ aisle.name }}</option>
 		</select>
 	</div>

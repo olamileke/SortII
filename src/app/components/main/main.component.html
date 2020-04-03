@@ -24,7 +24,7 @@
 </div>
 
 <div class='attendance-file-parent text-white' [class.active]='displayUpload'>
-	<app-file-upload (uploaded)='toggleDisplayUpload()' [type]='type'></app-file-upload>
+	<app-file-upload (uploaded)='toggleDisplayUpload()' [type]='type' [isVisible]='displayUpload'></app-file-upload>
 </div>
 
 <div class='search-container px-0' [class.active]='displaySearch'>

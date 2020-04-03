@@ -12,11 +12,11 @@ import { DetailService } from '../../services/detail.service';
   styleUrls: ['./add-steward.component.css']
 })
 export class AddStewardComponent implements OnInit {
- 
+	
+  @Output() upload = new EventEmitter();
   stewardForm:FormGroup;
   useAttendance:boolean;
   autoSuggest:boolean;
-  @Output() upload = new EventEmitter();
   searchNames = new Subject<string>();
   similarNames$:Observable<string[]>;
 
@@ -50,7 +50,8 @@ export class AddStewardComponent implements OnInit {
 	    distinctUntilChanged(),
 		switchMap((nm:string) => 
 		nm == '' ? of([]) : of(this.detail.totalStewards.filter(name => {
-				if(name.startsWith(nm) || name.includes(nm)) {
+				name = name.toLowerCase();
+				if(name.includes(nm)) {
 					return name;
 				}
 			}).slice(0,6))
@@ -58,7 +59,10 @@ export class AddStewardComponent implements OnInit {
 }
 
   search(name:string):void {
-	name = name.slice(0,1).toUpperCase() + name.slice(1,).toLowerCase();
+	if(!this.autoSuggest) {
+		return;
+	}
+	name = name.toLowerCase();
 	this.searchNames.next(name.toLowerCase());
   }
 

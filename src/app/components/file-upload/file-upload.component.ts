@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit , OnChanges , ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import * as XLSX from 'xlsx';
 
 import { DetailService } from '../../services/detail.service';
@@ -13,7 +13,9 @@ export class FileUploadComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput;
   @Input() type;
+  @Input() isVisible:boolean = false;
   @Output() uploaded = new EventEmitter();
+
   hasFile:boolean = false;
   file:File;
   fileName:string = '';
@@ -21,6 +23,14 @@ export class FileUploadComponent implements OnInit {
   constructor(private detail:DetailService, private notif:NotificationService) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
+	if(!this.isVisible) {
+		setTimeout(() => {
+			this.clear();
+		}, 1000)
+	}
   }
 
   clickFileInput():void {
@@ -72,8 +82,7 @@ export class FileUploadComponent implements OnInit {
 
   generateNames(sheet:any):boolean {
 	let records:any[] = Object.values(sheet);
-	let start = records[0].split(':')[0];
-	let end = records[0].split(':')[1];
+	let [start, end] = records[0].split(':');
 
 	if(start.slice(0,1) != end.slice(0,1)) {
 		this.notif.showErrorMessage('Excel sheet must be single columned!');
@@ -102,13 +111,13 @@ export class FileUploadComponent implements OnInit {
 	this.uploaded.emit();
 	setTimeout(() => {
 		this.clear();
-	}, 1000);
+	}, 2000);
   }
 
   clear():void {
-	this.hasFile = !this.hasFile;
+	this.hasFile = false;
 	this.fileName = ' ';
 	this.names = [];
-   }
+  }
 
 }

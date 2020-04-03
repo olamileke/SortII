@@ -7,7 +7,8 @@
  	left:0;
  	width:100vw;
  	height:100vh;
- 	background:rgba(0,0,0,0.93);
+	 background:rgba(0,0,0,0.93);
+	 /* background:url("/assets/Images/Home/noisy_net.png"); */
  	opacity:0;
  	transition:opacity 0.6s ease-out;
  	z-index:-9999;
