@@ -21,6 +21,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     PostingsComponent,
     StewardComponent,
     ErrorComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

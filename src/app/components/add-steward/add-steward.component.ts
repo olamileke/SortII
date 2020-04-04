@@ -56,7 +56,7 @@ export class AddStewardComponent implements OnInit {
 				}
 			}).slice(0,6))
     	))
-}
+  }
 
   search(name:string):void {
 	if(!this.autoSuggest) {

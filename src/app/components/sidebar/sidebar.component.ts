@@ -17,32 +17,22 @@ export class SidebarComponent implements OnInit {
   constructor(private detail:DetailService) { }
 
   ngOnInit() {
-
   }
 
-
   setActiveTab(tab:string, emit=false):void{
-
   	if(!this.tabs[tab]) {
-
 		for(let tab in this.tabs) {
-        
 			this.tabs[tab] = false;
 		}
-	
-		this.tabs[tab] = true;
-		  	
-	  	if(emit) {
 
+		this.tabs[tab] = true;
+	  	if(emit) {
 	  		this.emitChangeTab(tab);
 	  	}
 	}
   }
 
-
   emitChangeTab(tab:string) {
-
   	this.changeTab.emit(tab);
   }
-
 }

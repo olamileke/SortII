@@ -1,0 +1,89 @@
+:host
+{
+    position:fixed;
+ 	top:0;
+ 	left:0;
+ 	width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.93);
+    opacity:0;
+    transition:opacity 0.6s ease-out;
+    z-index:-9999;
+}
+
+ :host.active
+ {
+ 	opacity:1;
+ 	z-index:9999;
+ }
+
+ .search-box
+ {
+ 	position:relative;
+ 	top:-15vh;
+ }
+
+ .search-parent
+ {
+ 	position:absolute;
+ 	top:30vh;
+ 	width:90%;
+ }
+
+ .search-msg, .search-results
+ {
+ 	position:relative;
+ 	top:3vh;
+ }
+
+
+ .search-parent input
+ {
+ 	background:transparent;
+ 	outline:none;
+ 	border-color:transparent;
+ 	border-bottom:0.5px inset #fff;
+ 	color:#fff;
+ 	padding-left:30px;
+ 	padding-bottom: 3px;
+ 	font-size: 1.2em;
+ }
+
+ .search-parent input::placeholder
+ {
+ 	color:#fff;
+ }
+
+ button
+ {
+ 	position:absolute;
+ 	bottom:7vh;
+ 	right:7vw;
+ 	border-radius:4px;
+ 	border:1px solid #fff;
+ 	font-size:0.9em;
+ 	background:transparent;
+ 	cursor:pointer;
+ }
+
+ .elevation
+ {
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	border:2px solid #fff;
+ } 
+
+.elevation p
+ {
+	font-size:1.1em;
+ }
+
+ .fa-search
+ {
+ 	position:absolute;
+ 	top:4px;
+ 	left:16px;
+ 	color:#fff;
+ 	font-size:1.45em;
+ }

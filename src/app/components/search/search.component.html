@@ -1,0 +1,31 @@
+<div class='row d-flex justify-content-center justify-content-lg-start' style='height:100vh'>
+	<div class='col-lg-2'></div>
+	<div class='offset-lg-2'></div>
+
+	<div class='col-11 col-md-8 col-lg-5 px-4' style='position: relative; height:100%;'>
+		<div class='search-parent px-3'>
+			<div class='w-100 mb-3'>
+				<input type="text" class='w-100 text-white' (input)='checkForSteward($event)' placeholder="Who do you want to find?">
+				<i class='fa fa-search'></i>
+			</div>
+
+			<div class='search-results w-100 text-white' *ngIf='searched && searchResults.length > 0'>
+				<div *ngFor='let result of searchResults' class='d-flex justify-content-between align-items-center'>
+					<div class='d-flex flex-column'>
+						<p class='m-0 mb-2' style='font-size:1.15em;'>{{ result.name }}</p>
+						<p class='m-0 mb-2'>{{ result.aisle }} Entrance</p>
+						<p>Partner - {{ getStewardPartner(result.aisle, result.elevation ,result.position) }}</p>
+					</div>
+					<div class='d-flex justify-content-center align-items-center p-2 elevation my-1'>
+						<p class='m-0' style='position:relative; top:-3px;'>{{ getElevation(result.elevation, result.aisle) }}</p>
+					</div>
+				</div>
+			</div>
+
+			<p class='search-msg m-0 w-100 text-center text-white' *ngIf='searched && searchResults.length == 0'>
+				no search results
+			</p>
+		</div>
+	</div>
+</div>
+<button class='p-1 text-white' (click)='close()'>close</button>

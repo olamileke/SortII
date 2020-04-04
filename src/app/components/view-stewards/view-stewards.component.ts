@@ -19,7 +19,6 @@ export class ViewStewardsComponent implements OnInit {
 
 
   deleteSteward(i:number, name:string, status:string) {
-    
     this.stewards.splice(i,1);	 
 
     if(status == 'old') {

@@ -16,19 +16,19 @@ export class AddAisleComponent implements OnInit {
   constructor(private fb:FormBuilder, private details:DetailService, private notification:NotificationService) { }
 
   ngOnInit() {
+	this.createForm();
+  }
 
-  	this.aisleForm = this.fb.group({
-  		name:[this.details.aisleNames[0],[Validators.required, Validators.minLength(3)]],
-  		coordinator:['', [Validators.required, Validators.minLength(3)]],
-  		rows:[this.details.aisleRows[0], [Validators.required]]
-  	}) 
-
-   }
+  createForm() {
+	this.aisleForm = this.fb.group({
+		name:[this.details.aisleNames[0],[Validators.required, Validators.minLength(3)]],
+		coordinator:['', [Validators.required, Validators.minLength(3)]],
+		rows:[this.details.aisleRows[0], [Validators.required]]
+	}) 
+  }
 
   addAisle(form:FormGroup){ 
-
     if(this.details.posted) {
-
         this.notification.showErrorMessage('Posting completed!');
         return false;
     }
@@ -52,8 +52,8 @@ export class AddAisleComponent implements OnInit {
   // removing the added aisle from the list of aisles
   reflectAisleState(name:string) {
 
-      let index = this.details.aisleNames.indexOf(name);
-      this.details.aisleNames.splice(index, 1);
-      this.details.aisleRows.splice(index, 1);
+	let index = this.details.aisleNames.indexOf(name);
+    this.details.aisleNames.splice(index, 1);
+    this.details.aisleRows.splice(index, 1);
   }
 }

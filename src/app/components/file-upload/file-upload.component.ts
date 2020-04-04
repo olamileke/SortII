@@ -29,7 +29,7 @@ export class FileUploadComponent implements OnInit {
 	if(!this.isVisible) {
 		setTimeout(() => {
 			this.clear();
-		}, 1000)
+		}, 2000)
 	}
   }
 
