@@ -37,27 +37,19 @@ export class SearchComponent implements OnInit {
   }
 
   getStewardPartner(aisle:string, elevation:number, position:number):string {
-    if(position == 0) {
-        position = 1;
-    }
-    else {
-        position = 0;
-    }
-    let stewards = this.detail.searchStewards.filter(function(steward) {
-		if(steward.aisle == aisle && steward.elevation == elevation && steward.position == position) {
-			return steward;
-		}
-	})
+	position == 0 ? position = 1 : position = 0;
+	
+    let steward = this.detail.searchStewards.find(steward => 
+		steward.aisle == aisle && steward.elevation == elevation && steward.position == position
+	)
 
-    if(stewards[0].name == '') {
-        return 'None';
-    }
+	console.log(steward);
 
-    if(stewards.length > 0) {
-        return stewards[0].name;
-    }
+    if(!steward || steward.name.trim().length == 0) {
+		return 'None'
+	}
 
-    return 'None';
+    return steward.name;
   }
 
   getElevation(elevation:number, aisle:string):string {

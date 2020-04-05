@@ -93,13 +93,17 @@ export class PostingsComponent implements OnInit {
 
   formatPostings(postings:any[]) {
     let sorts=JSON.parse(JSON.stringify(postings));
-    sorts.forEach(sort => {
-        sort.forEach(srt => {
-            if(srt.trim().length == 0) {
-                srt = 'empty';
+
+    for(let i=0; i < sorts.length; i++) {
+
+        for(let j=0; j < sorts[i].length; j++) {
+
+            if(sorts[i][j].trim().length == 0) {
+
+                sorts[i][j]= 'empty';
             }
-        })
-    })
+        }
+    }
 
     return sorts;
   }

@@ -62,7 +62,6 @@ export class FileUploadComponent implements OnInit {
 	return name;
   }
 
-
   formatXLSXToArray(file:File) {
 	let reader = new FileReader();
 	let workbook;

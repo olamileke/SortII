@@ -23,31 +23,17 @@ export class StewardComponent implements OnInit {
   constructor(private notification:NotificationService) { }
 
   ngOnInit() {
-
-  	this.alt_name=this.name;
+  	this.alt_name = this.name;
   }
-
 
   verifyName(event:any):void {
-
-  	if(event.target.value != this.alt_name) {
-
-  		this.showCheck=true;
-  	}
-  	else {
-
-  		this.showCheck=false;
-  	}
-
-    this.new_name=event.target.value;
-
+	event.target.value != this.alt_name ? this.showCheck = true : this.showCheck = false;
+    this.new_name = event.target.value;
   }
 
-
   emitChange() {
-
-      let details={aisle:this.aisle, elevation:this.elevation, position:this.position, name:this.new_name};
-    	this.changeName.emit(details);
+    let details = {aisle:this.aisle, elevation:this.elevation, position:this.position, name:this.new_name};
+  	this.changeName.emit(details);
   }
 
 }

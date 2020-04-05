@@ -1,4 +1,3 @@
- 
 :host
 {
 	height:100%;
@@ -14,7 +13,11 @@
 .sidebar-main
 {
 	position:relative;
-	top:-1vh;
+}
+
+.sidebar-main.align
+{
+	top:3vh;
 }
 
 li.active

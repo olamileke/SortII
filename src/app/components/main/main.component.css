@@ -1,18 +1,17 @@
- @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
- 
- 
- .container-fluid
- {
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+.container-fluid
+{
  	position:relative;
  	min-height:100vh;
  	background:url("/assets/Images/Home/noisy_net.png");
- }
+}
 
- .sidebar-container
- {
+.sidebar-container
+{
  	position:fixed;
 	height:100%;
- }
+}
 
 div.navtoggle
 {
@@ -52,7 +51,6 @@ div.navtoggle span:before
 	top:8px;
 	width:75%;
 }
-
 
 .tab-body
 {
@@ -109,7 +107,6 @@ div.navtoggle span:before
 		top:calc(100vh - 110px);
 	}
 }
-
 
 @media(max-width:576px)
 {

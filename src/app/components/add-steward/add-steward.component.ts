@@ -110,7 +110,7 @@ export class AddStewardComponent implements OnInit {
     return true;
   }
 
-  validateAutoSuggest() {
+  validateAutoSuggest():boolean {
 	if(this.autoSuggest) {
 	   if(this.detail.totalStewards.length == 0) {
 		    this.notification.showErrorMessage('Upload names of all stewards!');

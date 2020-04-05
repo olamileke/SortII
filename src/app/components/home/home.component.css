@@ -1,22 +1,21 @@
- .container-fluid
- {
+.container-fluid
+{
  	position:relative;
  	height:100vh;
  	background:url("/assets/Images/Home/noisy_net.png");
- }
+}
 
- .overlay
- {
+.overlay
+{
  	position:absolute;
  	top:0;
  	left:0;
  	width:100%;
  	height:100%;
- }
+}
 
-
- .content-box
- {
+.content-box
+{
  	position:relative;
  	top:-3vh;
  	background:rgba(0,0,0,0.1);
@@ -24,35 +23,32 @@
  	line-height:1.8;
  	border-radius:4px;
  	font-family:'Quicksand', sans-serif;
- }
+}
 
- a
- {
+a
+{
  	position:relative;
  	background:#ED2939;
  	border-radius:3px;
  	color:#fff;
  	text-decoration: none;
- }
+}
 
- .content-parent
- {
+.content-parent
+{
  	width:100%;
- }
+}
 
-
- @media(max-width:767px)
- {
- 	.content-box
+@media(max-width:767px)
+{
+	.content-box
  	{
  		text-align:right;
  	}
- }
+}
 
-
- @media(max-width:567px)
- {
-
+@media(max-width:567px)
+{
  	.content-parent
  	{
  		width:unset;
@@ -63,4 +59,4 @@
  		height:unset;
  		text-align:left;
  	}
- }
+}

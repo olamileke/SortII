@@ -21,24 +21,23 @@ export class GetCrackingComponent implements OnInit {
   constructor(private fb:FormBuilder, private detail:DetailService, private notification:NotificationService) { }
 
   ngOnInit() {
+    this.createSetupForm();
+  }
 
+  createSetupForm() {
   	this.setupForm = this.fb.group({
-
-  		serviceType:['Communion Service', [Validators.required]],
-  		numPostings:['2', [Validators.required]]
-  	});
+        serviceType:['Communion Service', [Validators.required]],
+        numPostings:['2', [Validators.required]]
+    });
   }
 
   changeServiceType(event:any):void {
-
   	this.selectedService = event.target.value;
     this.detail.service = event.target.value;
   }
 
   postStewards():boolean {
-
     if(!this.validation()) {
-
         return;
     }
 
@@ -51,23 +50,18 @@ export class GetCrackingComponent implements OnInit {
     this.detail.posted = true;
   }
 
-
   validation():boolean {
-
     if(this.detail.aisles.length == 0) {
         this.notification.showErrorMessage('One or more aisles needed!');
         return false;
     }
 
-
     if(this.detail.posted) {
-
       this.notification.showErrorMessage('Posting completed!');
       return false;
     }
 
     if(this.detail.allStewards.length < 25) {
-
         this.notification.showErrorMessage("Ateast 25 stewards needed!");
         return false;
     }
@@ -75,17 +69,13 @@ export class GetCrackingComponent implements OnInit {
     return true;
   }
 
-
   generateAisleRows():void {
-
     this.detail.aisles.forEach(aisle => {
-        
         for(let i = 0; i < aisle.rows ; i++) {
             aisle.postings.push([' ', ' ']);
         }
     })
    }
-
 
    assignOldStewards():void {
     this.assignAisles(0, 1);
@@ -94,14 +84,12 @@ export class GetCrackingComponent implements OnInit {
     this.assignAisles(3, 1);
    }
 
-
    assignNewStewards():void {
     this.assignAisles(0, 0);
     this.assignAisles(1, 0);
     this.assignAisles(2, 0);
     this.assignAisles(3, 0);
    }
-
 
    assignLastElevations():void {
     this.assignAisles(4, 1);
@@ -130,7 +118,6 @@ export class GetCrackingComponent implements OnInit {
         }
     }
    }
- 
 
    assignSteward(status:boolean):string {
 
@@ -150,11 +137,9 @@ export class GetCrackingComponent implements OnInit {
     }
    }
 
-
    getSteward(arrayToCheck:any, arrayToAdd=null) {
     let i = 0;
     while(i < 1) {
-
         let index = Math.round(Math.random() * arrayToCheck.length) - 1;
         index == -1 ? index = 0 : index = index;
 

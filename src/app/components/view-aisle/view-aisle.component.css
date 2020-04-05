@@ -16,7 +16,6 @@
 	overflow-y:auto;
 }
 
-
 .aisles-body::-webkit-scrollbar
 {
 	width:4px;
@@ -45,19 +44,16 @@
 	cursor: pointer;
 }
 
-
 .em
 {
 	font-size:3.15em;
 }
-
 
 .empty-msg-container
 {
 	position: relative;
 	top:-12vh;
 }
-
 
 @media(max-width:567px)
 {
