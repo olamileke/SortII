@@ -30,7 +30,6 @@ input[type='checkbox']
 	position: absolute;
 	top:calc(100% + 25px);
 	background:#fff;
-	 /* background:url("/assets/Images/Home/noisy_net.png"); */
 	border-radius:4px;
 	opacity:0;
 	z-index:-9999;

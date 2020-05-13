@@ -65,7 +65,7 @@ export class PostingsComponent implements OnInit {
   changeName(details:any) {
     let aisles=this.aisles.filter(function(aisle) {
         return aisle.name == details.aisle;
-	});
+	}); 
 	
     aisles[0].postings[details.elevation][details.position] = details.name;
     this.detail.searchStewards.filter(function(steward) {

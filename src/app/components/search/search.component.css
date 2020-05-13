@@ -86,3 +86,10 @@ button
  	color:#fff;
  	font-size:1.45em;
 }
+
+@media(max-width:991px)
+{
+	.search-parent{
+		top:22vh;
+	}
+}

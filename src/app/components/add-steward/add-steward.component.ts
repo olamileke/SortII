@@ -20,7 +20,7 @@ export class AddStewardComponent implements OnInit {
   searchNames = new Subject<string>();
   similarNames$:Observable<string[]>;
 
-  constructor(private fb:FormBuilder, private notification:NotificationService, private detail:DetailService) { }
+  constructor(private fb:FormBuilder, private notification:NotificationService, public detail:DetailService) { }
 
   ngOnInit() {
 	this.createFormGroup();
@@ -76,14 +76,24 @@ export class AddStewardComponent implements OnInit {
         this.notification.showErrorMessage('Posting completed!');
         return;
 	}
-	if(!this.validateAttendance(form.get('name').value)) {
+
+	let name = form.get('name').value;
+	let steward = this.detail.allStewards.find(steward => steward.name.toLowerCase() == name.toLowerCase());
+
+	if(steward) {
+		this.notification.showErrorMessage('Steward added already!');
 		return;
 	}
+
+	if(!this.validateAttendance(name)) {
+		return;
+	}
+
 	if(!this.validateAutoSuggest()) {
 	    return;
 	}
 
-    let steward = {name:'', status:''};
+    steward = {name:'', status:''};
     steward['name'] = form.get('name').value;
     steward['status'] = form.get('status').value;
     this.detail.allStewards.push(steward);

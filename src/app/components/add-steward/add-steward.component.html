@@ -14,7 +14,7 @@
 				<div class='search-results w-100 px-4 py-3 text-muted' [class.active]='(similarNames$ | async)?.length > 0'>
 					<div class='my-2 d-flex justify-content-between align-items-center' *ngFor='let name of similarNames$ | async' (click)="setName(name)" style='cursor:pointer;'>
 						<p class='m-0'>{{ name }}</p>
-						<img src='/assets/Images/AddSteward/arrow-top-left.png'>
+						<img src='/assets/Images/AddSteward/arrow-top-left.png' alt='arrow-top-icon'>
 					</div>
 				</div>
 			</div>
@@ -28,9 +28,9 @@
 				<div class='d-flex'>
 					<button type="submit" class='p-2 text-white' [disabled]='stewardForm.invalid'>Add</button>
 				</div>
-				<div class='d-flex flex-column text-muted'>
+				<div class='d-flex flex-column text-muted mt-2'>
 					<div class='d-flex align-items-end attendance-text'>
-						<p class='m-0 mr-2'>use chaplaincy attendance</p>
+						<p class='m-0 mr-2'>use chaplaincy attendance</p> 
 						<input type='checkbox' (click)='toggleUseAttendance()' [disabled]='autoSuggest && detail.totalStewards.length == 0' [checked]='detail.chaplaincyAttendance.length > 0'>
 					</div>
 					<div class='d-flex align-items-end justify-content-end attendance-text'>
