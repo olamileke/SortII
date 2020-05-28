@@ -10,3 +10,5 @@ app.get('/', (req, res, next) => {
 
 	res.sendFile(path.join(__dirname, 'dist', 'SortII', 'index.html'));
 })
+
+app.listen(process.env.PORT || 8080);
