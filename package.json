@@ -2,7 +2,7 @@
   "name": "sort-ii",
   "version": "0.0.0",
   "scripts": {
-    "ng": "node app.js",
+    "ng": "node server.js",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
