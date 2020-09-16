@@ -1,27 +1,48 @@
-# SortII
+### Sort II
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
+------------
+PWA to automate postings and stewards for my service unit. Rewritten with a better UI and improved logic. View it [here](https://sortapp.netlify.app "here").
 
-## Development server
+To run this application locally, you must have node installed. Get that [here](https://nodejs.org "here"). You also need to have the Angular CLI installed. To do this, open up your terminal and run
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+npm install -g @angular/cli
+```
 
-## Code scaffolding
+This will install the latest version of the Angular CLI which will enable you to run Angular applications.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Next up, navigate into the directory of your choice on your system and clone this repository by running
 
-## Build
+```
+git clone https://github.com/olamileke/sortii.git
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+When cloning is complete, navigate into the application directory by running
 
-## Running unit tests
+```
+cd SortII
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+At this point, we need to install all the packages needed by the app to run. Do this by running
 
-## Running end-to-end tests
+```
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+This will install all the packages defined in the package.json file in the application root.
 
-## Further help
+Still in the terminal, run
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+ng serve
+```
+When the application is done compiling, access it at localhost:4200. Alternatively, you can specify the port you want the app to run at by adding a  port parameter like
+
+```
+ng serve --port 5000
+```
+Here the app will be available at localhost:5000.
+
+
+
+
